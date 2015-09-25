@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5718F002-BF4D-40CF-A19F-DD4469AB6FE0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>78B815638F30F3C045608776E0B358C44AEB4B4C</key>
+		<string>https://github.com/TooBearToDesign/Stopwatch.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>stopwatch/stopwatch.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>78B815638F30F3C045608776E0B358C44AEB4B4C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/TooBearToDesign/Stopwatch.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>78B815638F30F3C045608776E0B358C44AEB4B4C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>78B815638F30F3C045608776E0B358C44AEB4B4C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Stopwatch</string>
+		</dict>
+	</array>
+</dict>
+</plist>
