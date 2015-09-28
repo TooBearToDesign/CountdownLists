@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7601BB986BB005077F5 /* ContentViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		A6C86CC31BB59FE100F1F150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */; };
 		A6C86CC51BB59FE100F1F150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CC41BB59FE100F1F150 /* ViewController.swift */; };
 		A6C86CC81BB59FE100F1F150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C86CC61BB59FE100F1F150 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A674D7601BB986BB005077F5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		A6C86CBD1BB59FE100F1F150 /* stopwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stopwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C86CC11BB59FE100F1F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */,
 				A6C86CC41BB59FE100F1F150 /* ViewController.swift */,
+				A674D7601BB986BB005077F5 /* ContentViewController.swift */,
 				A6C86CC61BB59FE100F1F150 /* Main.storyboard */,
 				A6C86CC91BB59FE100F1F150 /* Images.xcassets */,
 				A6C86CCB1BB59FE100F1F150 /* LaunchScreen.xib */,
@@ -156,7 +159,8 @@
 		A6C86CB51BB59FE100F1F150 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Grow Association";
 				TargetAttributes = {
 					A6C86CBC1BB59FE100F1F150 = {
@@ -213,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6C86CC51BB59FE100F1F150 /* ViewController.swift in Sources */,
+				A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */,
 				A6C86CC31BB59FE100F1F150 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +281,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -344,6 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = stopwatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -354,6 +361,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = stopwatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -372,6 +380,7 @@
 				);
 				INFOPLIST_FILE = stopwatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/stopwatch.app/stopwatch";
 			};
@@ -387,6 +396,7 @@
 				);
 				INFOPLIST_FILE = stopwatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/stopwatch.app/stopwatch";
 			};
@@ -411,6 +421,7 @@
 				A6C86CDE1BB59FE100F1F150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6C86CDF1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "stopwatchTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +430,7 @@
 				A6C86CE11BB59FE100F1F150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
