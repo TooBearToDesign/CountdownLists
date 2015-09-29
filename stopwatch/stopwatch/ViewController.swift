@@ -57,6 +57,25 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         }
         
     }
+    func addListHandler( index: Int) -> UIViewController?{
+        let alert = UIAlertController(title: "Stopwatch", message: "Create a new list?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Enter text"
+            textField.secureTextEntry = false
+        })
+        alert.addAction(UIAlertAction(title: "Create", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        print(String(self.pageTitles.count))
+        if (index == self.pageTitles.count){
+            print("return nil:")
+            return nil
+        }else{
+            print("return index:"+String(index))
+            return self.viewControllerAtIndex(index)
+        }
+    }
     // MARK: - page view controller data source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -69,23 +88,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         
         index--
         return self.viewControllerAtIndex(index)
-    }
-    
-    func addListHandler(index: Int) -> UIViewController?{
-        let alertController = UIAlertController(title: "Stopwatch", message: "Create a new list?", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let createButton = UIAlertAction(title: "Create", style: UIAlertActionStyle.Default){ (ACTION) in
-            self.addStopwatchList("A new one!"+String(index))
-        }
-        let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-        alertController.addAction(createButton)
-        alertController.addAction(cancelButton)
-        presentViewController(alertController, animated: true, completion: nil)
-        
-        if (index == self.pageTitles.count){
-            return nil
-        }else{
-            return self.viewControllerAtIndex(index)
-        }
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
