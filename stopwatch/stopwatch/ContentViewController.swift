@@ -11,6 +11,7 @@ import UIKit
 class ContentViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var pageIndex: Int!
     var titleText: String!

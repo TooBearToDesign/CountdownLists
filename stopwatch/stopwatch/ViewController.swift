@@ -12,6 +12,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
 
     var pageViewController: UIPageViewController!
     var pageTitles: NSMutableArray!
+    var pageTables:NSMutableArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
