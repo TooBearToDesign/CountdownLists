@@ -50,12 +50,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="listOfQueue" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-Or-iB5">
+                                <rect key="frame" x="20" y="281" width="560" height="299"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="299" id="1Qd-KN-2nb"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="pGd-9E-V7o" firstAttribute="top" secondItem="Kkq-g2-21p" secondAttribute="bottom" id="Ffj-hB-36g"/>
                             <constraint firstItem="pGd-9E-V7o" firstAttribute="trailing" secondItem="DOk-O7-KHG" secondAttribute="trailingMargin" id="Hik-gO-uGd"/>
+                            <constraint firstAttribute="bottom" secondItem="Kya-Or-iB5" secondAttribute="bottom" constant="20" symbolic="YES" id="N9M-X2-rk3"/>
                             <constraint firstItem="pGd-9E-V7o" firstAttribute="leading" secondItem="DOk-O7-KHG" secondAttribute="leadingMargin" id="QLg-td-amd"/>
+                            <constraint firstItem="Kya-Or-iB5" firstAttribute="trailing" secondItem="pGd-9E-V7o" secondAttribute="trailing" id="ddJ-ZL-Cke"/>
+                            <constraint firstItem="Kya-Or-iB5" firstAttribute="leading" secondItem="pGd-9E-V7o" secondAttribute="leading" id="kRH-iC-Jho"/>
                         </constraints>
                     </view>
                     <connections>

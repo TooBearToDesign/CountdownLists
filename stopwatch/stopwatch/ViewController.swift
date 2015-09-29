@@ -11,12 +11,12 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource {
 
     var pageViewController: UIPageViewController!
-    var pageTitles: NSArray!
+    var pageTitles: NSMutableArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pageTitles = NSArray(objects: "Explorer", "Widgets")
+        addStopwatchList("The first one!")
         
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func viewControllerAtIndex(index: Int) -> ContentViewController{
         if ((self.pageTitles.count == 0) || (index >= self.pageTitles.count)){
             return ContentViewController()
@@ -47,7 +47,16 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         
         return vc
     }
-
+    
+    // Add list manager
+    func addStopwatchList(title: NSString){
+        if (self.pageTitles == nil){
+            self.pageTitles = NSMutableArray(objects: title)
+        } else {
+            self.pageTitles.addObject(title)
+        }
+        
+    }
     // MARK: - page view controller data source
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -60,21 +69,36 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         
         index--
         return self.viewControllerAtIndex(index)
+    }
+    
+    func addListHandler(index: Int) -> UIViewController?{
+        let alertController = UIAlertController(title: "Stopwatch", message: "Create a new list?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let createButton = UIAlertAction(title: "Create", style: UIAlertActionStyle.Default){ (ACTION) in
+            self.addStopwatchList("A new one!"+String(index))
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(createButton)
+        alertController.addAction(cancelButton)
+        presentViewController(alertController, animated: true, completion: nil)
         
+        if (index == self.pageTitles.count){
+            return nil
+        }else{
+            return self.viewControllerAtIndex(index)
+        }
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! ContentViewController
         var index = vc.pageIndex as Int
-        
+
         if (index == NSNotFound){
             return nil
         }
-        
         index++
         
         if (index == self.pageTitles.count){
-            return nil
+            return addListHandler(index)
         }
         
         return self.viewControllerAtIndex(index)
