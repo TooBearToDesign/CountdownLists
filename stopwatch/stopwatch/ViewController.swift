@@ -55,18 +55,9 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         } else {
             self.pageTitles.addObject(title)
         }
-        
     }
     func addListHandler( index: Int) -> UIViewController?{
-        let alert = UIAlertController(title: "Stopwatch", message: "Create a new list?", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Enter text"
-            textField.secureTextEntry = false
-        })
-        alert.addAction(UIAlertAction(title: "Create", style: UIAlertActionStyle.Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-        
+        addStopwatchList("Title+"+String(index))
         print(String(self.pageTitles.count))
         if (index == self.pageTitles.count){
             print("return nil:")
