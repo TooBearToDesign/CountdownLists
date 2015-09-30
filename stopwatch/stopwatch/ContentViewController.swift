@@ -19,7 +19,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Variaables block
     var timer = NSTimer()
-    var timersList: [String] = []
+    var timersList: [TimerItem] = []
     var hours = 0 as Double
     var minutes = 0 as Double
     var seconds = 0 as Double
@@ -40,7 +40,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     // TableView Methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
-        cell.populateCell(self.timersList[indexPath.row], switchCellState: true)
+        cell.populateCell(String(self.timersList[indexPath.row].my_index+1)+") "+self.timersList[indexPath.row].cellLabel, switchCellState: self.timersList[indexPath.row].switchState)
         
         return cell
     }
@@ -77,6 +77,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
                 self.addToListOutlet.enabled = false
                 self.stepperOutlet.enabled = false
+                self.resetStopwatchLabel()
             }else{
                 self.startStopOutlet.setTitle("START", forState: UIControlState.Normal)
                 self.addToListOutlet.enabled = true
@@ -86,13 +87,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     // Actions
     @IBAction func addToListAction(sender: AnyObject) {
-        if self.seconds == 0.0 &&
-        self.minutes == 0.0 &&
-        self.hours == 0.0 {
+        if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
             //Null timer cannot be added
         } else {
             self.isListEmpty = false
-            self.timersList.insert(stopwatchDisplay, atIndex: timersList.count)
+            self.timersList.insert(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: timersList.count), atIndex: timersList.count)
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
         }
@@ -101,6 +100,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func startStopAction(sender: AnyObject) {
         watchisRunning = !watchisRunning
         changeStartStopState()
+        for i in timersList {
+            self.seconds = i.seconds
+            self.minutes = i.minutes
+            self.hours = i.hours
+            self.populateStopwatchLabel()
+        }
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {

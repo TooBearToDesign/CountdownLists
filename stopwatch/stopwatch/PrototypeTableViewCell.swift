@@ -13,11 +13,6 @@ class PrototypeTableViewCell: UITableViewCell {
     @IBOutlet weak var prototypeLabelCell: UILabel!
     @IBOutlet weak var prototypeSwitchCell: UISwitch!
     
-    //Variables section
-    var hours = 0 as Double
-    var minutes = 0 as Double
-    var seconds = 0 as Double
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,7 +28,4 @@ class PrototypeTableViewCell: UITableViewCell {
         self.prototypeSwitchCell.setOn(switchCellState, animated: true)
         self.prototypeLabelCell.text = labelCell
     }
-    @IBAction func prototypeSwitchCellChanged(sender: AnyObject) {
-    }
-
 }
