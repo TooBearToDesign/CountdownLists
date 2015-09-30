@@ -65,25 +65,43 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.stepperOutlet.value = 0.0
         self.populateStopwatchLabel()
     }
+    func countdownStopwatch(){
+        if seconds == 0.0 && minutes != 0.0{
+            minutes -= 1.0
+            seconds = 59.0
+        }else{
+            seconds--
+        }
+        if minutes == 0.0 && hours != 0.0 && seconds != 0.0 {
+            hours -= 1.0
+            minutes = 59.0
+        }
+        if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
+            stopCountdownTimer()
+        }
+        populateStopwatchLabel()
+    }
     func reloadTimerList(){
         //TODO: When prototype switch has been changed - reload list with new values
     }
-    //Button views
-    func changeStartStopState(){
-        if isListEmpty {
-            //nothing to do
-        } else {
-            if watchisRunning{
-                self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
-                self.addToListOutlet.enabled = false
-                self.stepperOutlet.enabled = false
-            }else{
-                self.startStopOutlet.setTitle("START", forState: UIControlState.Normal)
-                self.addToListOutlet.enabled = true
-                self.stepperOutlet.enabled = true
-                self.resetStopwatchLabel()
-            }
+    func startCountdownTimer(){
+        self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
+        self.addToListOutlet.enabled = false
+        self.stepperOutlet.enabled = false
+        for i in timersList {
+            self.seconds = i.seconds
+            self.minutes = i.minutes
+            self.hours = i.hours
+            self.populateStopwatchLabel()
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
         }
+    }
+    func stopCountdownTimer(){
+        timer.invalidate()
+        self.startStopOutlet.setTitle("START", forState: UIControlState.Normal)
+        self.addToListOutlet.enabled = true
+        self.stepperOutlet.enabled = true
+        self.resetStopwatchLabel()
     }
     // Actions
     @IBAction func addToListAction(sender: AnyObject) {
@@ -98,15 +116,16 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func startStopAction(sender: AnyObject) {
-        watchisRunning = !watchisRunning
-        changeStartStopState()
-        for i in timersList {
-            self.seconds = i.seconds
-            self.minutes = i.minutes
-            self.hours = i.hours
-            self.populateStopwatchLabel()
+        if isListEmpty {
+            //nothing to do
+        } else {
+            watchisRunning = !watchisRunning
+            if watchisRunning{
+                self.startCountdownTimer()
+            }else{
+                self.stopCountdownTimer()
+            }
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("populateStopwatchLabel"), userInfo: nil, repeats: true)
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
