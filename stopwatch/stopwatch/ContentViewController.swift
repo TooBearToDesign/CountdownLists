@@ -59,11 +59,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         stopwatchLabel.text = stopwatchDisplay
     }
     func resetStopwatchLabel(){
-        seconds = 0.0
-        minutes = 0.0
-        hours = 0.0
+        self.seconds = 0.0
+        self.minutes = 0.0
+        self.hours = 0.0
         self.stepperOutlet.value = 0.0
-        populateStopwatchLabel()
+        self.populateStopwatchLabel()
     }
     func reloadTimerList(){
         //TODO: When prototype switch has been changed - reload list with new values
@@ -77,11 +77,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
                 self.addToListOutlet.enabled = false
                 self.stepperOutlet.enabled = false
-                self.resetStopwatchLabel()
             }else{
                 self.startStopOutlet.setTitle("START", forState: UIControlState.Normal)
                 self.addToListOutlet.enabled = true
                 self.stepperOutlet.enabled = true
+                self.resetStopwatchLabel()
             }
         }
     }
@@ -106,6 +106,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.hours = i.hours
             self.populateStopwatchLabel()
         }
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: ("populateStopwatchLabel"), userInfo: nil, repeats: true)
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
