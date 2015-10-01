@@ -11,13 +11,13 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource {
 
     var pageViewController: UIPageViewController!
-    var pageTitles: NSMutableArray!
-    var pageTables:NSMutableArray!
+    var pageTitles: [String] = []
+    var pageLists: [[TimerItem]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addStopwatchList("The first one!")
+        addListHandler(0)
         
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
@@ -43,28 +43,25 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
             return ContentViewController()
         }
         let vc: ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
-        vc.titleText = self.pageTitles[index] as! String
         vc.pageIndex = index
+        vc.titleText = self.pageTitles[index]
+        vc.timersList = self.pageLists[index]
         
         return vc
     }
     
     // Add list manager
-    func addStopwatchList(title: NSString){
-        if (self.pageTitles == nil){
-            self.pageTitles = NSMutableArray(objects: title)
-        } else {
-            self.pageTitles.addObject(title)
-        }
+    func addStopwatchList(title: String, timerList: [TimerItem]){
+        self.pageTitles.insert(title, atIndex: self.pageTitles.count)
+        //self.pageLists.insert(timerList, atIndex: self.pageTitles.count)
     }
     func addListHandler( index: Int) -> UIViewController?{
-        addStopwatchList("Title+"+String(index))
-        print(String(self.pageTitles.count))
+        let newTimerList: [TimerItem] = []
+        pageLists.insert(newTimerList, atIndex: self.pageTitles.count)
+        addStopwatchList("Title+"+String(index), timerList: pageLists[self.pageTitles.count])
         if (index == self.pageTitles.count){
-            print("return nil:")
             return nil
         }else{
-            print("return index:"+String(index))
             return self.viewControllerAtIndex(index)
         }
     }

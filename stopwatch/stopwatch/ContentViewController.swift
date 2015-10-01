@@ -66,7 +66,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.populateStopwatchLabel()
     }
     func countdownStopwatch(){
-        if seconds == 0.0 && minutes != 0.0{
+        if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
+            stopCountdownTimer()
+        }else if seconds == 0.0 && minutes != 0.0{
             minutes -= 1.0
             seconds = 59.0
         }else{
@@ -76,25 +78,20 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             hours -= 1.0
             minutes = 59.0
         }
-        if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
-            stopCountdownTimer()
-        }
         populateStopwatchLabel()
     }
     func reloadTimerList(){
         //TODO: When prototype switch has been changed - reload list with new values
     }
-    func startCountdownTimer(){
+    func startCountdownTimer(index: Int){
         self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
         self.addToListOutlet.enabled = false
         self.stepperOutlet.enabled = false
-        for i in timersList {
-            self.seconds = i.seconds
-            self.minutes = i.minutes
-            self.hours = i.hours
-            self.populateStopwatchLabel()
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
-        }
+        self.seconds = timersList[index].seconds
+        self.minutes = timersList[index].minutes
+        self.hours = timersList[index].hours
+        self.populateStopwatchLabel()
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
     }
     func stopCountdownTimer(){
         timer.invalidate()
@@ -121,7 +118,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             watchisRunning = !watchisRunning
             if watchisRunning{
-                self.startCountdownTimer()
+                self.startCountdownTimer(0)
             }else{
                 self.stopCountdownTimer()
             }
