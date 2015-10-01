@@ -14,7 +14,7 @@ class TimerItem {
     var minutes = 0.0
     var hours = 0.0
     
-    var switchState = false
+    var switchState = true
     var cellLabel = ""
     
     var countdownDisplay = ""

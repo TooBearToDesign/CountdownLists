@@ -13,8 +13,6 @@ class PrototypeTableViewCell: UITableViewCell {
     @IBOutlet weak var prototypeLabelCell: UILabel!
     @IBOutlet weak var prototypeSwitchCell: UISwitch!
     
-    var prototypeCellIndex = 0
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,9 +24,8 @@ class PrototypeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populateCell(labelCell: String, switchCellState: Bool, index: Int){
-        self.prototypeSwitchCell.setOn(false, animated: true)
+    func populateCell(labelCell: String, switchCellState: Bool){
+        self.prototypeSwitchCell.setOn(switchCellState, animated: true)
         self.prototypeLabelCell.text = labelCell
-        self.prototypeCellIndex = index
     }
 }

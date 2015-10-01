@@ -16,6 +16,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var startStopOutlet: UIButton!
     @IBOutlet weak var addToListOutlet: UIButton!
     @IBOutlet weak var stepperOutlet: UIStepper!
+    @IBOutlet weak var clearButtonOutlet: UIButton!
     
     // Variaables block
     var timer = NSTimer()
@@ -36,13 +37,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = self.titleText
-        currentWatchIndex = 0
     }
     
     // TableView Methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
-        cell.populateCell(String(self.timersList[indexPath.row].my_index+1)+") "+self.timersList[indexPath.row].cellLabel, switchCellState: self.timersList[indexPath.row].switchState, index: self.timersList[indexPath.row].my_index)
+        cell.populateCell(String(self.timersList[indexPath.row].my_index+1)+") "+self.timersList[indexPath.row].cellLabel, switchCellState: self.timersList[indexPath.row].switchState)
         
         return cell
     }
@@ -97,6 +97,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
             self.addToListOutlet.enabled = false
             self.stepperOutlet.enabled = false
+            self.clearButtonOutlet.enabled = false
         }
         self.seconds = timersList[index].seconds
         self.minutes = timersList[index].minutes
@@ -109,9 +110,16 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.startStopOutlet.setTitle("START", forState: UIControlState.Normal)
         self.addToListOutlet.enabled = true
         self.stepperOutlet.enabled = true
+        self.clearButtonOutlet.enabled = true
         self.resetStopwatchLabel()
     }
     // Actions
+    @IBAction func clearListAction(sender: AnyObject) {
+        self.timersList.removeAll()
+        self.countsTabel.reloadData()
+        self.resetStopwatchLabel()
+        self.isListEmpty = true
+    }
     @IBAction func changeState(sender: AnyObject) {
     }
     @IBAction func addToListAction(sender: AnyObject) {

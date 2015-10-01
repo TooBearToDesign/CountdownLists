@@ -12,7 +12,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
 
     var pageViewController: UIPageViewController!
     var pageTitles: [String] = []
-    var pageLists: [[TimerItem]] = [[]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,25 +44,21 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         let vc: ContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
         vc.pageIndex = index
         vc.titleText = self.pageTitles[index]
-        vc.timersList = self.pageLists[index]
         
         return vc
     }
     
     // Add list manager
-    func addStopwatchList(title: String, timerList: [TimerItem]){
+    func addStopwatchList(title: String){
         self.pageTitles.insert(title, atIndex: self.pageTitles.count)
-        //self.pageLists.insert(timerList, atIndex: self.pageTitles.count)
     }
     func addListHandler( index: Int) -> UIViewController?{
-        let newTimerList: [TimerItem] = []
-        pageLists.insert(newTimerList, atIndex: self.pageTitles.count)
-        addStopwatchList("Title+"+String(index), timerList: pageLists[self.pageTitles.count])
-        if (index == self.pageTitles.count){
-            return nil
-        }else{
+        addStopwatchList("Countdown List")
+//        if (index == self.pageTitles.count){
+//            return nil
+//        }else{
             return self.viewControllerAtIndex(index)
-        }
+//        }
     }
     // MARK: - page view controller data source
     
