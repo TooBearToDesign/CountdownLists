@@ -89,7 +89,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         index++
         
         if (index == self.pageTitles.count){
-            return addListHandler(index)
+            return nil
         }
         
         return self.viewControllerAtIndex(index)

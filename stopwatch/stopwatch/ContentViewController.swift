@@ -27,6 +27,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var watchisRunning = false
     var addTimeToList = false
     var isListEmpty = true
+    var currentWatchIndex = 0;
     
     //Page view controller
     var pageIndex: Int!
@@ -35,12 +36,13 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = self.titleText
+        currentWatchIndex = 0
     }
     
     // TableView Methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
-        cell.populateCell(String(self.timersList[indexPath.row].my_index+1)+") "+self.timersList[indexPath.row].cellLabel, switchCellState: self.timersList[indexPath.row].switchState)
+        cell.populateCell(String(self.timersList[indexPath.row].my_index+1)+") "+self.timersList[indexPath.row].cellLabel, switchCellState: self.timersList[indexPath.row].switchState, index: self.timersList[indexPath.row].my_index)
         
         return cell
     }
@@ -64,10 +66,17 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.hours = 0.0
         self.stepperOutlet.value = 0.0
         self.populateStopwatchLabel()
+        currentWatchIndex = 0
     }
     func countdownStopwatch(){
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
-            stopCountdownTimer()
+            currentWatchIndex += 1
+            if self.timersList.count > currentWatchIndex {
+                self.timer.invalidate()
+                self.startCountdownTimer(currentWatchIndex)
+            }else{
+                stopCountdownTimer()
+            }
         }else if seconds == 0.0 && minutes != 0.0{
             minutes -= 1.0
             seconds = 59.0
@@ -84,9 +93,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         //TODO: When prototype switch has been changed - reload list with new values
     }
     func startCountdownTimer(index: Int){
-        self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
-        self.addToListOutlet.enabled = false
-        self.stepperOutlet.enabled = false
+        if !watchisRunning {
+            self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
+            self.addToListOutlet.enabled = false
+            self.stepperOutlet.enabled = false
+        }
         self.seconds = timersList[index].seconds
         self.minutes = timersList[index].minutes
         self.hours = timersList[index].hours
@@ -101,6 +112,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.resetStopwatchLabel()
     }
     // Actions
+    @IBAction func changeState(sender: AnyObject) {
+    }
     @IBAction func addToListAction(sender: AnyObject) {
         if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
             //Null timer cannot be added
@@ -116,12 +129,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if isListEmpty {
             //nothing to do
         } else {
-            watchisRunning = !watchisRunning
-            if watchisRunning{
+            if !watchisRunning{
                 self.startCountdownTimer(0)
             }else{
                 self.stopCountdownTimer()
             }
+            watchisRunning = !watchisRunning
         }
     }
     

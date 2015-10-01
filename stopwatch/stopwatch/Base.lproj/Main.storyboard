@@ -37,7 +37,6 @@
         <!--Content View Controller-->
         <scene sceneID="mCn-UB-pQu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cml-ml-Wsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ContentViewController" id="r0k-Rg-lNQ" customClass="ContentViewController" customModule="stopwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kkq-g2-21p"/>
@@ -113,7 +112,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99f-Dk-st5">
                                                     <rect key="frame" x="503" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="prototypeSwitchCellChanged:" destination="MKP-nw-qHi" eventType="valueChanged" id="a7i-Nw-PCc"/>
+                                                        <action selector="changeState:" destination="r0k-Rg-lNQ" eventType="valueChanged" id="zSO-st-gXu"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -173,8 +172,9 @@
                         <outlet property="titleLabel" destination="pGd-9E-V7o" id="T9g-pR-YZn"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cml-ml-Wsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="1093"/>
+            <point key="canvasLocation" x="368" y="1087"/>
         </scene>
     </scenes>
 </document>
