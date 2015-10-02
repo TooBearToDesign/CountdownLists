@@ -65,7 +65,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         let unarchivedData = defaults.dataForKey(arrayOfListsKey)
         if unarchivedData != nil{
             self.storeTimersList = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedData!) as! [TimerItem]
-            self.isListEmpty = false
+            if self.storeTimersList.count != 0{
+                self.isListEmpty = false
+            }
         }
         
         defaults.synchronize()
