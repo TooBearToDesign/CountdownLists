@@ -52,6 +52,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         print(buttonTitle)
         if buttonTitle == "Delete" {
             self.storeTimersList.removeAtIndex(0)
+            if self.storeTimersList.count == 0 {
+                self.isListEmpty = true
+            }
             self.countsTabel.reloadData()
         }
     }
@@ -152,11 +155,15 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     // Actions
     @IBAction func clearListAction(sender: AnyObject) {
-        self.storeTimersList.removeAll()
-        self.countsTabel.reloadData()
-        self.resetStopwatchLabel()
-        self.isListEmpty = true
-        self.saveData()
+        if self.stopwatchLabel.text == "00:00:00"{
+            self.storeTimersList.removeAll()
+            self.countsTabel.reloadData()
+            self.resetStopwatchLabel()
+            self.isListEmpty = true
+            self.saveData()
+        } else {
+            self.resetStopwatchLabel()
+        }
     }
     @IBAction func changeState(sender: AnyObject) {
     }
