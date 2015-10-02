@@ -65,12 +65,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" maximumValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="3yy-Zi-RXR">
-                                <rect key="frame" x="253" y="146" width="94" height="29"/>
-                                <connections>
-                                    <action selector="stepperValueChanged:" destination="r0k-Rg-lNQ" eventType="valueChanged" id="5zk-w5-lh2"/>
-                                </connections>
-                            </stepper>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1V-UZ-ySO">
                                 <rect key="frame" x="20" y="146" width="225" height="42"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -135,16 +129,23 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="UzP-Gz-WO7"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="clearListAction:" destination="r0k-Rg-lNQ" eventType="touchUpInside" id="rHb-re-Hcb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFA-mZ-P1N">
-                                <rect key="frame" x="521" y="16" width="59" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFA-mZ-P1N">
+                                <rect key="frame" x="521" y="7" width="59" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="+"/>
                             </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" wraps="YES" maximumValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="3yy-Zi-RXR">
+                                <rect key="frame" x="253" y="152" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="r0k-Rg-lNQ" eventType="valueChanged" id="5zk-w5-lh2"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -162,7 +163,7 @@
                             <constraint firstItem="RHL-d1-N8m" firstAttribute="leading" secondItem="Kya-Or-iB5" secondAttribute="leading" id="UCo-gx-sUe"/>
                             <constraint firstItem="RHL-d1-N8m" firstAttribute="leading" secondItem="g1V-UZ-ySO" secondAttribute="leading" id="VWd-dx-53l"/>
                             <constraint firstItem="X84-ba-wkb" firstAttribute="baseline" secondItem="g1V-UZ-ySO" secondAttribute="baseline" id="Wxl-Ps-APO"/>
-                            <constraint firstItem="3yy-Zi-RXR" firstAttribute="top" secondItem="g1V-UZ-ySO" secondAttribute="top" id="XIG-Mw-eWb"/>
+                            <constraint firstItem="3yy-Zi-RXR" firstAttribute="top" secondItem="g1V-UZ-ySO" secondAttribute="top" constant="6" id="XIG-Mw-eWb"/>
                             <constraint firstItem="pGd-9E-V7o" firstAttribute="leading" secondItem="of0-TJ-dKJ" secondAttribute="trailing" constant="8" symbolic="YES" id="YzQ-O0-qTb"/>
                             <constraint firstItem="X84-ba-wkb" firstAttribute="leading" secondItem="3yy-Zi-RXR" secondAttribute="trailing" constant="8" symbolic="YES" id="aes-f5-y4t"/>
                             <constraint firstItem="fOl-GP-f8S" firstAttribute="trailing" secondItem="X84-ba-wkb" secondAttribute="trailing" id="auM-mc-XcA"/>

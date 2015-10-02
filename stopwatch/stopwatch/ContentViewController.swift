@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var stopwatchLabel: UILabel!
@@ -41,6 +41,20 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // TableView Methods
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", "Skip")
+        if !watchisRunning{
+            alert.show()
+        }
+    }
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        let buttonTitle = alertView.buttonTitleAtIndex(buttonIndex)
+        print(buttonTitle)
+        if buttonTitle == "Delete" {
+            self.storeTimersList.removeAtIndex(0)
+            self.countsTabel.reloadData()
+        }
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
         cell.populateCell(String(indexPath.row+1)+") "+self.storeTimersList[indexPath.row].cellLabel, switchCellState: self.storeTimersList[indexPath.row].switchState)
