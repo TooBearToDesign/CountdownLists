@@ -20,10 +20,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Variaables block
     var timer = NSTimer()
-    var timersList: [TimerItem] = []
-    var hours = 0 as Double
-    var minutes = 0 as Double
-    var seconds = 0 as Double
+    var storeTimersList: [TimerItem] = []
+    var hours = 0.0 as Double
+    var minutes = 0.0 as Double
+    var seconds = 0.0 as Double
     var stopwatchDisplay = ""
     var watchisRunning = false
     var addTimeToList = false
@@ -37,20 +37,39 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = self.titleText
+        self.loadData()
     }
     
     // TableView Methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
-        cell.populateCell(String(self.timersList[indexPath.row].my_index+1)+") "+self.timersList[indexPath.row].cellLabel, switchCellState: self.timersList[indexPath.row].switchState)
+        cell.populateCell(String(indexPath.row+1)+") "+self.storeTimersList[indexPath.row].cellLabel, switchCellState: self.storeTimersList[indexPath.row].switchState)
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.timersList.count
+        return self.storeTimersList.count
     }
-    
+    //Save and load data
+    func saveData(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let arrayOfListsKey = "savedTimersList"
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(self.storeTimersList)
+        defaults.setObject(data, forKey: arrayOfListsKey)
+    }
+    func loadData(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let arrayOfListsKey = "savedTimersList"
+        let unarchivedData = defaults.dataForKey(arrayOfListsKey)
+        if unarchivedData != nil{
+            self.storeTimersList = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedData!) as! [TimerItem]
+            self.isListEmpty = false
+        }
+        
+        defaults.synchronize()
+    }
     //Functions to work with stopwatch
     func populateStopwatchLabel(){
         let secondsString = seconds > 9 ? "\(Int(seconds))" : "0\(Int(seconds))"
@@ -71,7 +90,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func countdownStopwatch(){
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
             currentWatchIndex += 1
-            if self.timersList.count > currentWatchIndex {
+            if self.storeTimersList.count > currentWatchIndex {
                 self.timer.invalidate()
                 self.startCountdownTimer(currentWatchIndex)
             }else{
@@ -99,9 +118,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.stepperOutlet.enabled = false
             self.clearButtonOutlet.enabled = false
         }
-        self.seconds = timersList[index].seconds
-        self.minutes = timersList[index].minutes
-        self.hours = timersList[index].hours
+
+        self.hours = self.storeTimersList[index].hours
+        self.seconds = self.storeTimersList[index].seconds
+        self.minutes = self.storeTimersList[index].minutes
+        
         self.populateStopwatchLabel()
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
     }
@@ -115,10 +136,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     // Actions
     @IBAction func clearListAction(sender: AnyObject) {
-        self.timersList.removeAll()
+        self.storeTimersList.removeAll()
         self.countsTabel.reloadData()
         self.resetStopwatchLabel()
         self.isListEmpty = true
+        self.saveData()
     }
     @IBAction func changeState(sender: AnyObject) {
     }
@@ -127,9 +149,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             //Null timer cannot be added
         } else {
             self.isListEmpty = false
-            self.timersList.insert(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: timersList.count), atIndex: timersList.count)
+            self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: self.storeTimersList.count))
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
+            self.saveData()
         }
     }
     

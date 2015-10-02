@@ -8,11 +8,11 @@
 
 import Foundation
 
-class TimerItem {
+class TimerItem: NSObject, NSCoding {
     
-    var seconds = 0.0
-    var minutes = 0.0
-    var hours = 0.0
+    var seconds = 0.0 as Double
+    var minutes = 0.0 as Double
+    var hours = 0.0 as Double
     
     var switchState = true
     var cellLabel = ""
@@ -28,5 +28,27 @@ class TimerItem {
         self.switchState = swState
         self.my_index = index
         self.cellLabel = cLabel
+    }
+    
+    // MARK: NSCoding
+    
+    required init (coder decoder: NSCoder){
+        self.seconds = decoder.decodeDoubleForKey("seconds")
+        self.minutes = decoder.decodeDoubleForKey("minutes")
+        self.hours = decoder.decodeDoubleForKey("hours")
+        self.switchState = decoder.decodeBoolForKey("switchState")
+        self.my_index = decoder.decodeIntegerForKey("my_index")
+        self.cellLabel = decoder.decodeObjectForKey("cellLabel") as! String
+        
+        super.init()
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        coder.encodeDouble(self.seconds, forKey: "seconds")
+        coder.encodeDouble(self.minutes, forKey: "minutes")
+        coder.encodeDouble(self.hours, forKey: "hours")
+        coder.encodeBool(self.switchState, forKey: "switchState")
+        coder.encodeInteger(self.my_index, forKey: "my_index")
+        coder.encodeObject(self.cellLabel, forKey: "cellLabel")
     }
 }

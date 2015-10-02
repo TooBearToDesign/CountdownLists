@@ -54,11 +54,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
     }
     func addListHandler( index: Int) -> UIViewController?{
         addStopwatchList("Countdown List")
-//        if (index == self.pageTitles.count){
-//            return nil
-//        }else{
-            return self.viewControllerAtIndex(index)
-//        }
+        return self.viewControllerAtIndex(index)
     }
     // MARK: - page view controller data source
     
