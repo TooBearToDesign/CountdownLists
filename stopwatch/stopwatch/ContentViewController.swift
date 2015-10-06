@@ -48,11 +48,16 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.clearButtonOutlet.enabled = false
             self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
         }
+        self.countsTabel.reloadData()
     }
     
     // TableView Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", "Skip")
+        var skipString = "Skip"
+        if !self.storeTimersList[indexPath.row].switchState {
+            skipString = "Back to list"
+        }
+        let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", skipString)
         self.timerIdChangedFromList = indexPath.row
         if !watchisRunning{
             alert.show()
@@ -60,7 +65,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         let buttonTitle = alertView.buttonTitleAtIndex(buttonIndex)
-        print(buttonTitle)
         if buttonTitle == "Delete" {
             self.storeTimersList.removeAtIndex(self.timerIdChangedFromList)
             if self.storeTimersList.count == 0 {
@@ -70,12 +74,19 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.clearButtonOutlet.enabled = false
                 }
             }
-            self.countsTabel.reloadData()
+        } else if buttonTitle == "Skip" {
+            self.storeTimersList[self.timerIdChangedFromList].switchState = false
+            self.storeTimersList[self.timerIdChangedFromList].skipLabel = "(skipped)"
+        } else if buttonTitle == "Back to list" {
+            self.storeTimersList[self.timerIdChangedFromList].switchState = true
+            self.storeTimersList[self.timerIdChangedFromList].skipLabel = ""
         }
+        self.countsTabel.reloadData()
+        self.saveData()
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
-        cell.populateCell(String(indexPath.row+1)+") "+self.storeTimersList[indexPath.row].cellLabel, switchCellState: self.storeTimersList[indexPath.row].switchState)
+        cell.populateCell(String(indexPath.row+1)+") "+self.storeTimersList[indexPath.row].cellLabel+" "+self.storeTimersList[indexPath.row].skipLabel)
         
         return cell
     }
@@ -123,8 +134,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func countdownStopwatch(){
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
-            currentWatchIndex += 1
-            if self.storeTimersList.count > currentWatchIndex {
+            self.currentWatchIndex += 1
+            if (self.storeTimersList.count > currentWatchIndex) {
                 self.timer.invalidate()
                 self.startCountdownTimer(currentWatchIndex)
             }else{
@@ -145,7 +156,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func reloadTimerList(){
         //TODO: When prototype switch has been changed - reload list with new values
     }
-    func startCountdownTimer(index: Int){
+    func startCountdownTimer(var index: Int){
         if !watchisRunning {
             self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
             self.addToListOutlet.enabled = false
@@ -157,8 +168,18 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.seconds = self.storeTimersList[index].seconds
         self.minutes = self.storeTimersList[index].minutes
         
-        self.populateStopwatchLabel()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
+        if self.storeTimersList[index].switchState {
+            self.populateStopwatchLabel()
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
+        } else {
+            index += 1
+            self.currentWatchIndex = index
+            if self.storeTimersList.count != index{
+                self.startCountdownTimer(index)
+            } else {
+                self.stopCountdownTimer()
+            }
+        }
     }
     func stopCountdownTimer(){
         timer.invalidate()
@@ -166,6 +187,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.addToListOutlet.enabled = true
         self.stepperOutlet.enabled = true
         self.clearButtonOutlet.enabled = true
+        self.watchisRunning = false
         self.resetStopwatchLabel()
     }
     // Actions
@@ -183,8 +205,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
         }
     }
-    @IBAction func changeState(sender: AnyObject) {
-    }
     @IBAction func addToListAction(sender: AnyObject) {
         if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
             //Null timer cannot be added
@@ -199,17 +219,26 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func startStopAction(sender: AnyObject) {
-        if isListEmpty {
+        var nothingToStart = true
+        for var i in self.storeTimersList {
+            if i.switchState {
+                nothingToStart = false
+            }
+        }
+        if isListEmpty || nothingToStart {
             //nothing to do
         } else {
             if !watchisRunning{
-                self.startCountdownTimer(0)
+                self.currentWatchIndex = 0
+                self.startCountdownTimer(currentWatchIndex)
+                self.watchisRunning = true
             }else{
                 self.stopCountdownTimer()
+                self.watchisRunning = false
             }
-            watchisRunning = !watchisRunning
         }
     }
+    
     @IBAction func addNewListAction(sender: AnyObject) {
     }
     

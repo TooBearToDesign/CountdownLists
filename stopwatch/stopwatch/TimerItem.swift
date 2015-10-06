@@ -15,9 +15,10 @@ class TimerItem: NSObject, NSCoding {
     var hours = 0.0 as Double
     
     var switchState = true
-    var cellLabel = ""
+    var cellLabel = "" as String
+    var skipLabel = "" as String
     
-    var countdownDisplay = ""
+    var countdownDisplay = "" as String
     
     var my_index = 0
     
@@ -39,6 +40,7 @@ class TimerItem: NSObject, NSCoding {
         self.switchState = decoder.decodeBoolForKey("switchState")
         self.my_index = decoder.decodeIntegerForKey("my_index")
         self.cellLabel = decoder.decodeObjectForKey("cellLabel") as! String
+        self.skipLabel = decoder.decodeObjectForKey("skipLabel") as! String
         
         super.init()
     }
@@ -50,5 +52,6 @@ class TimerItem: NSObject, NSCoding {
         coder.encodeBool(self.switchState, forKey: "switchState")
         coder.encodeInteger(self.my_index, forKey: "my_index")
         coder.encodeObject(self.cellLabel, forKey: "cellLabel")
+        coder.encodeObject(self.skipLabel, forKey: "skipLabel")
     }
 }

@@ -98,24 +98,15 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99f-Dk-st5">
-                                                    <rect key="frame" x="503" y="6" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="changeState:" destination="r0k-Rg-lNQ" eventType="valueChanged" id="zSO-st-gXu"/>
-                                                    </connections>
-                                                </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="99f-Dk-st5" firstAttribute="centerY" secondItem="5Jy-mq-3ts" secondAttribute="centerY" id="Ls6-Qc-GbB"/>
-                                                <constraint firstItem="99f-Dk-st5" firstAttribute="centerY" secondItem="eAQ-Ul-MSq" secondAttribute="centerY" id="MCp-LT-IIx"/>
+                                                <constraint firstItem="eAQ-Ul-MSq" firstAttribute="centerY" secondItem="5Jy-mq-3ts" secondAttribute="centerY" id="GcU-ji-uef"/>
                                                 <constraint firstItem="eAQ-Ul-MSq" firstAttribute="leading" secondItem="5Jy-mq-3ts" secondAttribute="leadingMargin" id="TNd-fR-zpd"/>
-                                                <constraint firstAttribute="trailing" secondItem="99f-Dk-st5" secondAttribute="trailing" constant="8" id="wdq-kR-psm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="prototypeLabelCell" destination="eAQ-Ul-MSq" id="bx1-3U-zFp"/>
-                                            <outlet property="prototypeSwitchCell" destination="99f-Dk-st5" id="vDj-un-A8g"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

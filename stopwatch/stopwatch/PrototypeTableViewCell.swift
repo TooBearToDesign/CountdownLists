@@ -11,7 +11,6 @@ import UIKit
 class PrototypeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var prototypeLabelCell: UILabel!
-    @IBOutlet weak var prototypeSwitchCell: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,8 +23,7 @@ class PrototypeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func populateCell(labelCell: String, switchCellState: Bool){
-        self.prototypeSwitchCell.setOn(switchCellState, animated: true)
+    func populateCell(labelCell: String){
         self.prototypeLabelCell.text = labelCell
     }
 }
