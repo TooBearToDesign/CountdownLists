@@ -94,7 +94,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.storeTimersList.count
     }
-    //Save and load data
+    //Hardware methods
     func saveData(){
         let defaults = NSUserDefaults.standardUserDefaults()
         let arrayOfListsKey = "savedTimersList"
@@ -114,6 +114,15 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         defaults.synchronize()
+    }
+    func showNotification() {
+        let localNotify = UILocalNotification()
+        localNotify.alertBody = "Your timer has finished!"
+        localNotify.timeZone = NSTimeZone.defaultTimeZone()
+        localNotify.soundName = UILocalNotificationDefaultSoundName
+        localNotify.category = "COUNTDOWN_CATEGORY"
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
     }
     //Functions to work with stopwatch
     func populateStopwatchLabel(){
@@ -139,7 +148,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.timer.invalidate()
                 self.startCountdownTimer(currentWatchIndex)
             }else{
-                stopCountdownTimer()
+                self.showNotification()
+                self.stopCountdownTimer()
             }
         }else if seconds == 0.0 && minutes != 0.0{
             minutes -= 1.0
@@ -155,6 +165,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func reloadTimerList(){
         //TODO: When prototype switch has been changed - reload list with new values
+        //Switch was removed...Maybe in future will get back
     }
     func startCountdownTimer(var index: Int){
         if !watchisRunning {
@@ -220,7 +231,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func startStopAction(sender: AnyObject) {
         var nothingToStart = true
-        for var i in self.storeTimersList {
+        for i in self.storeTimersList {
             if i.switchState {
                 nothingToStart = false
             }
