@@ -140,6 +140,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.stepperOutlet.value = 0.0
         self.populateStopwatchLabel()
         currentWatchIndex = 0
+        if self.isListEmpty {
+            self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
+        } else {
+            self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
+        }
     }
     func countdownStopwatch(){
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
