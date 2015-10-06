@@ -38,6 +38,14 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         self.titleLabel.text = self.titleText
         self.loadData()
+        if self.storeTimersList.count != 0 {
+            self.isListEmpty = false
+            self.clearButtonOutlet.enabled = true
+            self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
+        } else {
+            self.clearButtonOutlet.enabled = false
+            self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
+        }
     }
     
     // TableView Methods
@@ -160,9 +168,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
             self.isListEmpty = true
+            self.clearButtonOutlet.enabled = false
+            self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
             self.saveData()
         } else {
             self.resetStopwatchLabel()
+            self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
         }
     }
     @IBAction func changeState(sender: AnyObject) {
@@ -172,6 +183,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             //Null timer cannot be added
         } else {
             self.isListEmpty = false
+            self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
             self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: self.storeTimersList.count))
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
@@ -193,6 +205,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
+        self.clearButtonOutlet.enabled = true
+        self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
         seconds = sender.value
         if seconds == 60.0{
             minutes += 1.0
