@@ -17,6 +17,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var addToListOutlet: UIButton!
     @IBOutlet weak var stepperOutlet: UIStepper!
     @IBOutlet weak var clearButtonOutlet: UIButton!
+    @IBOutlet weak var addNewListOutlet: UIButton!
     
     // Variaables block
     var timer = NSTimer()
@@ -28,7 +29,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var watchisRunning = false
     var addTimeToList = false
     var isListEmpty = true
-    var currentWatchIndex = 0;
+    var currentWatchIndex = 0
+    var timerIdChangedFromList = 0
     
     //Page view controller
     var pageIndex: Int!
@@ -51,6 +53,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     // TableView Methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", "Skip")
+        self.timerIdChangedFromList = indexPath.row
         if !watchisRunning{
             alert.show()
         }
@@ -59,9 +62,13 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         let buttonTitle = alertView.buttonTitleAtIndex(buttonIndex)
         print(buttonTitle)
         if buttonTitle == "Delete" {
-            self.storeTimersList.removeAtIndex(0)
+            self.storeTimersList.removeAtIndex(self.timerIdChangedFromList)
             if self.storeTimersList.count == 0 {
                 self.isListEmpty = true
+                self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
+                if self.stopwatchDisplay == "00:00:00" {
+                    self.clearButtonOutlet.enabled = false
+                }
             }
             self.countsTabel.reloadData()
         }
@@ -202,6 +209,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             watchisRunning = !watchisRunning
         }
+    }
+    @IBAction func addNewListAction(sender: AnyObject) {
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
