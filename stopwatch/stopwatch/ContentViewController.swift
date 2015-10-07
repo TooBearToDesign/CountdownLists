@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
 
@@ -97,14 +98,14 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     //Hardware methods
     func saveData(){
         let defaults = NSUserDefaults.standardUserDefaults()
-        let arrayOfListsKey = "savedTimersList"
+        let arrayOfListsKey = self.titleText
         
         let data = NSKeyedArchiver.archivedDataWithRootObject(self.storeTimersList)
         defaults.setObject(data, forKey: arrayOfListsKey)
     }
     func loadData(){
         let defaults = NSUserDefaults.standardUserDefaults()
-        let arrayOfListsKey = "savedTimersList"
+        let arrayOfListsKey = self.titleText
         let unarchivedData = defaults.dataForKey(arrayOfListsKey)
         if unarchivedData != nil{
             self.storeTimersList = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedData!) as! [TimerItem]
@@ -117,7 +118,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func showNotification() {
         let localNotify = UILocalNotification()
-        localNotify.alertBody = "Your timer has finished!"
+        localNotify.alertBody = self.titleText+" has finished!"
         localNotify.timeZone = NSTimeZone.defaultTimeZone()
         localNotify.soundName = UILocalNotificationDefaultSoundName
         localNotify.category = "COUNTDOWN_CATEGORY"
@@ -256,6 +257,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func addNewListAction(sender: AnyObject) {
+        
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {

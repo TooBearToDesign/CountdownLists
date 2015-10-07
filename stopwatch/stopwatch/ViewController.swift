@@ -53,7 +53,8 @@ class ViewController: UIViewController, UIPageViewControllerDataSource {
         self.pageTitles.insert(title, atIndex: self.pageTitles.count)
     }
     func addListHandler( index: Int) -> UIViewController?{
-        addStopwatchList("Countdown List")
+        addStopwatchList("Countdown List #1")
+        addStopwatchList("Countdown List #2")
         return self.viewControllerAtIndex(index)
     }
     // MARK: - page view controller data source
