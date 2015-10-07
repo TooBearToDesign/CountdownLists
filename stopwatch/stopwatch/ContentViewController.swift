@@ -127,7 +127,15 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
     }
-    
+    func setBadgeNumber(incDec: Bool) {
+        let localNotify = UILocalNotification()
+        if incDec {
+            localNotify.applicationIconBadgeNumber += 1
+        } else {
+            localNotify.applicationIconBadgeNumber -= 1
+        }
+        UIApplication.sharedApplication().applicationIconBadgeNumber = localNotify.applicationIconBadgeNumber
+    }
     //Functions to popover controller (colorized func)
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "colorizeView" {
@@ -171,7 +179,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.timer.invalidate()
                 self.startCountdownTimer(currentWatchIndex)
             }else{
-                self.showNotification()
                 if self.repeatSwitchOutlet.on{
                     self.timer.invalidate()
                     self.startCountdownTimer(0)
@@ -197,6 +204,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.addToListOutlet.enabled = false
             self.stepperOutlet.enabled = false
             self.clearButtonOutlet.enabled = false
+            self.setBadgeNumber(true)
         }
 
         self.hours = self.storeTimersList[index].hours
@@ -224,6 +232,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.clearButtonOutlet.enabled = true
         self.watchisRunning = false
         self.resetStopwatchLabel()
+        self.setBadgeNumber(false)
+        self.showNotification()
     }
     // Actions
     @IBAction func colorizeButtonAction(sender: AnyObject) {
