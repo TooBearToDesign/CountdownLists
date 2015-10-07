@@ -18,7 +18,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var addToListOutlet: UIButton!
     @IBOutlet weak var stepperOutlet: UIStepper!
     @IBOutlet weak var clearButtonOutlet: UIButton!
-    @IBOutlet weak var addNewListOutlet: UIButton!
+    @IBOutlet weak var repeatSwitchOutlet: UISwitch!
+    @IBOutlet weak var repeatTittleOutlet: UILabel!
     
     // Variaables block
     var timer = NSTimer()
@@ -155,7 +156,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.startCountdownTimer(currentWatchIndex)
             }else{
                 self.showNotification()
-                self.stopCountdownTimer()
+                if self.repeatSwitchOutlet.on{
+                    self.timer.invalidate()
+                    self.startCountdownTimer(0)
+                } else {
+                    self.stopCountdownTimer()
+                }
             }
         }else if seconds == 0.0 && minutes != 0.0{
             minutes -= 1.0
@@ -168,10 +174,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             minutes = 59.0
         }
         populateStopwatchLabel()
-    }
-    func reloadTimerList(){
-        //TODO: When prototype switch has been changed - reload list with new values
-        //Switch was removed...Maybe in future will get back
     }
     func startCountdownTimer(var index: Int){
         if !watchisRunning {
@@ -208,6 +210,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.resetStopwatchLabel()
     }
     // Actions
+    @IBAction func repeatSwitchChanged(sender: AnyObject) {
+    }
     @IBAction func clearListAction(sender: AnyObject) {
         if self.stopwatchLabel.text == "00:00:00"{
             self.storeTimersList.removeAll()
@@ -254,10 +258,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.watchisRunning = false
             }
         }
-    }
-    
-    @IBAction func addNewListAction(sender: AnyObject) {
-        
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
