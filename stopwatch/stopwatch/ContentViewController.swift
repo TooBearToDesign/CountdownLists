@@ -9,7 +9,7 @@
 import UIKit
 import AudioToolbox
 
-class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
+class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var stopwatchLabel: UILabel!
@@ -20,6 +20,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var clearButtonOutlet: UIButton!
     @IBOutlet weak var repeatSwitchOutlet: UISwitch!
     @IBOutlet weak var repeatTittleOutlet: UILabel!
+    @IBOutlet weak var colorizeButtonOutlet: UIButton!
     
     // Variaables block
     var timer = NSTimer()
@@ -126,6 +127,21 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
     }
+    
+    //Functions to popover controller (colorized func)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "colorizeView" {
+            let vc = segue.destinationViewController 
+            let controller = vc.popoverPresentationController
+            if controller != nil {
+                controller?.delegate = self
+            }
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
     //Functions to work with stopwatch
     func populateStopwatchLabel(){
         let secondsString = seconds > 9 ? "\(Int(seconds))" : "0\(Int(seconds))"
@@ -210,7 +226,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.resetStopwatchLabel()
     }
     // Actions
-    @IBAction func repeatSwitchChanged(sender: AnyObject) {
+    @IBAction func colorizeButtonAction(sender: AnyObject) {
+        self.performSegueWithIdentifier("colorizeView", sender: self)
     }
     @IBAction func clearListAction(sender: AnyObject) {
         if self.stopwatchLabel.text == "00:00:00"{
