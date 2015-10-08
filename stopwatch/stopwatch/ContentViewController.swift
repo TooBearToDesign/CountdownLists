@@ -25,6 +25,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     // Variaables block
     var timer = NSTimer()
     var storeTimersList: [TimerItem] = []
+    var storeColorTimer: ColorItem!
     var hours = 0.0 as Double
     var minutes = 0.0 as Double
     var seconds = 0.0 as Double
@@ -109,16 +110,36 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = self.countsTabel.cellForRowAtIndexPath(indexPath)
         cell?.textLabel?.textColor = color
     }
+    func changeViewColors() {
+        self.titleLabel.textColor = self.storeColorTimer.defaultDisplayColor
+        self.stopwatchLabel.textColor = self.storeColorTimer.defaultDisplayColor
+        self.startStopOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
+        self.addToListOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
+        self.stepperOutlet.tintColor = self.storeColorTimer.defaultButtonColor
+        self.clearButtonOutlet.titleLabel?.textColor =  self.storeColorTimer.defaultButtonColor
+        self.repeatSwitchOutlet.onTintColor = self.storeColorTimer.defaultSwitchOnColor
+        self.repeatSwitchOutlet.tintColor = self.storeColorTimer.defaultButtonColor
+        self.repeatTittleOutlet.textColor = self.storeColorTimer.defaultDisplayColor
+        self.colorizeButtonOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
+    }
+    func randomizeColor() -> UIColor {
+        var r_color: UIColor!
+        let r_red = CGFloat(drand48())
+        let r_green = CGFloat(drand48())
+        let r_blue = CGFloat(drand48())
+        r_color = UIColor(red: r_red, green: r_green, blue: r_blue, alpha: 1.0)
+        
+        return r_color
+    }
     func updateColors() {
         //Color variables
-        var timersColor = UIColor.whiteColor()
-        for var i in self.storeTimersList {
-            timersColor = UIColor.blackColor()
-            if !i.switchState {
-                timersColor = UIColor.lightGrayColor()
-            }
-            self.changeCellColor(i.my_index, color: timersColor)
+        if self.storeColorTimer == nil {
+            self.storeColorTimer = ColorItem(button: UIColor.blackColor(), display: UIColor.blackColor(), switchon: UIColor.blackColor(), celllabel: UIColor.blackColor())
         }
+        for var i in self.storeTimersList {
+            self.changeCellColor(i.my_index, color: i.switchState ?  self.storeColorTimer.defaultCellLableColor : UIColor.lightGrayColor())
+        }
+        self.changeViewColors()
     }
     //
     //      Hardware methods
@@ -126,19 +147,28 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func saveData(){
         let defaults = NSUserDefaults.standardUserDefaults()
         let arrayOfListsKey = self.titleText
+        let colorOfListsKey = self.titleText+"color"
         
         let data = NSKeyedArchiver.archivedDataWithRootObject(self.storeTimersList)
+        let color = NSKeyedArchiver.archivedDataWithRootObject(self.storeColorTimer)
         defaults.setObject(data, forKey: arrayOfListsKey)
+        defaults.setObject(color, forKey: colorOfListsKey)
     }
     func loadData(){
         let defaults = NSUserDefaults.standardUserDefaults()
         let arrayOfListsKey = self.titleText
+        let colorOfListsKey = self.titleText+"color"
         let unarchivedData = defaults.dataForKey(arrayOfListsKey)
+        let unarchivedColor = defaults.dataForKey(colorOfListsKey)
         if unarchivedData != nil{
             self.storeTimersList = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedData!) as! [TimerItem]
             if self.storeTimersList.count != 0{
                 self.isListEmpty = false
             }
+        }
+        if unarchivedColor != nil {
+            self.storeColorTimer = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedColor!) as! ColorItem
+            self.updateColors()
         }
         
         defaults.synchronize()
@@ -198,6 +228,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
         }
+        self.updateColors()
     }
     func countdownStopwatch(){
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
@@ -232,6 +263,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.stepperOutlet.enabled = false
             self.clearButtonOutlet.enabled = false
             self.setBadgeNumber(true)
+            self.updateColors()
         }
 
         self.hours = self.storeTimersList[index].hours
@@ -262,12 +294,21 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.resetStopwatchLabel()
         self.setBadgeNumber(false)
         self.showNotification()
+        self.updateColors()
     }
     //
     //      Actions
     //
     @IBAction func colorizeButtonAction(sender: AnyObject) {
-        self.performSegueWithIdentifier("colorizeView", sender: self)
+        //self.performSegueWithIdentifier("colorizeView", sender: self)
+        //Sets random colors to the elemnts of the view
+        if self.storeColorTimer == nil {
+            self.storeColorTimer = ColorItem(button: self.randomizeColor(), display: self.randomizeColor(), switchon: self.randomizeColor(), celllabel: self.randomizeColor())
+        } else {
+            self.storeColorTimer.redefineColors(self.randomizeColor(), display: self.randomizeColor(), switchon: self.randomizeColor(), celllabel: self.randomizeColor())
+        }
+        self.updateColors()
+        self.saveData()
     }
     @IBAction func clearListAction(sender: AnyObject) {
         if self.stopwatchLabel.text == "00:00:00"{
@@ -277,12 +318,13 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.isListEmpty = true
             self.clearButtonOutlet.enabled = false
             self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
+            self.updateColors()
             self.saveData()
         } else {
             self.resetStopwatchLabel()
             self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
+            self.updateColors()
         }
-        self.updateColors()
     }
     @IBAction func addToListAction(sender: AnyObject) {
         if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
@@ -292,6 +334,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
             self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: self.storeTimersList.count))
             self.countsTabel.reloadData()
+            self.updateColors()
             self.resetStopwatchLabel()
             self.saveData()
         }
@@ -330,6 +373,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             minutes = 0.0
         }
         populateStopwatchLabel()
+        self.updateColors()
     }
     
     // Dont really know what this is.

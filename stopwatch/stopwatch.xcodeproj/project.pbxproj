@@ -15,6 +15,7 @@
 		A6C86CCA1BB59FE100F1F150 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C86CC91BB59FE100F1F150 /* Images.xcassets */; };
 		A6C86CCD1BB59FE100F1F150 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6C86CCB1BB59FE100F1F150 /* LaunchScreen.xib */; };
 		A6C86CD91BB59FE100F1F150 /* stopwatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CD81BB59FE100F1F150 /* stopwatchTests.swift */; };
+		A6EA5F001BC681D200BE2EAF /* ColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		A6C86CD81BB59FE100F1F150 /* stopwatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stopwatchTests.swift; sourceTree = "<group>"; };
 		A6EA5EFD1BC5305E00BE2EAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		A6EA5EFE1BC5305E00BE2EAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				A6C86CC41BB59FE100F1F150 /* ViewController.swift */,
 				A674D7601BB986BB005077F5 /* ContentViewController.swift */,
 				A674D7641BBC2DA7005077F5 /* TimerItem.swift */,
+				A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */,
 				A6C86CC61BB59FE100F1F150 /* Main.storyboard */,
 				A6C86CC91BB59FE100F1F150 /* Images.xcassets */,
 				A6C86CCB1BB59FE100F1F150 /* LaunchScreen.xib */,
@@ -224,6 +227,7 @@
 				A6C86CC51BB59FE100F1F150 /* ViewController.swift in Sources */,
 				A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */,
 				A6C86CC31BB59FE100F1F150 /* AppDelegate.swift in Sources */,
+				A6EA5F001BC681D200BE2EAF /* ColorItem.swift in Sources */,
 				A674D7651BBC2DA7005077F5 /* TimerItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
