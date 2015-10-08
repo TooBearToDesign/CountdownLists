@@ -128,13 +128,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
     }
     func setBadgeNumber(incDec: Bool) {
-        let localNotify = UILocalNotification()
         if incDec {
-            localNotify.applicationIconBadgeNumber += 1
+            UIApplication.sharedApplication().applicationIconBadgeNumber += 1
         } else {
-            localNotify.applicationIconBadgeNumber -= 1
+            UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
         }
-        UIApplication.sharedApplication().applicationIconBadgeNumber = localNotify.applicationIconBadgeNumber
     }
     //Functions to popover controller (colorized func)
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
