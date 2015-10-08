@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "stopwatch/ContentViewController.swift"
-            timestampString = "466001143.434858"
+            timestampString = "466001460.314035"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "updateColors()"
             landmarkType = "5">
          </BreakpointContent>

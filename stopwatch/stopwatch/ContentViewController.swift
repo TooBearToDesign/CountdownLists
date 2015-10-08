@@ -129,10 +129,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.stepperOutlet.tintColor = self.storeColorTimer.defaultButtonColor
         self.repeatSwitchOutlet.tintColor = self.storeColorTimer.defaultButtonColor
-        self.startStopOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
-        self.addToListOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
-        self.clearButtonOutlet.titleLabel?.textColor =  self.storeColorTimer.defaultButtonColor
-        self.colorizeButtonOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
+        self.startStopOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
+        self.addToListOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
+        self.clearButtonOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
+        self.colorizeButtonOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
         
         self.repeatSwitchOutlet.onTintColor = self.storeColorTimer.defaultSwitchOnColor
     }
@@ -317,7 +317,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.storeColorTimer == nil {
             self.storeColorTimer = ColorItem(button: self.randomizeColor(), display: self.randomizeColor(), switchon: self.randomizeColor(), celllabel: self.randomizeColor())
         } else {
-            self.storeColorTimer.redefineColors(self.randomizeColor(), display: self.randomizeColor(), switchon: self.randomizeColor(), celllabel: self.randomizeColor())
+            self.storeColorTimer.redefineColors(true, button: self.randomizeColor(), display: self.randomizeColor(), switchon: self.randomizeColor(), celllabel: self.randomizeColor())
         }
         self.updateColors()
         self.updateCellColors()
@@ -349,6 +349,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.resetStopwatchLabel()
             self.saveData()
         }
+        self.updateCellColors()
     }
     
     @IBAction func startStopAction(sender: AnyObject) {

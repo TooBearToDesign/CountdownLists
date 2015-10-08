@@ -23,7 +23,7 @@ class ColorItem: NSObject, NSCoding {
         self.defaultCellLableColor = switchon
     }
     
-    func redefineColors(button: UIColor, display: UIColor, switchon: UIColor, celllabel: UIColor){
+    func redefineColors(test: Bool, button: UIColor, display: UIColor, switchon: UIColor, celllabel: UIColor){
         self.defaultButtonColor = button
         self.defaultDisplayColor = display
         self.defaultSwitchOnColor = switchon
