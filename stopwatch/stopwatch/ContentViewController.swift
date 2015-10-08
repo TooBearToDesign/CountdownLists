@@ -56,6 +56,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.countsTabel.reloadData()
         self.updateColors()
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     //
     //      TableView Methods
@@ -136,7 +137,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.storeColorTimer == nil {
             self.storeColorTimer = ColorItem(button: UIColor.blackColor(), display: UIColor.blackColor(), switchon: UIColor.blackColor(), celllabel: UIColor.blackColor())
         }
-        for var i in self.storeTimersList {
+        for i in self.storeTimersList {
             self.changeCellColor(i.my_index, color: i.switchState ?  self.storeColorTimer.defaultCellLableColor : UIColor.lightGrayColor())
         }
         self.changeViewColors()
