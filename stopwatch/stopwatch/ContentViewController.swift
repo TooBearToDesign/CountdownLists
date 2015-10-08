@@ -11,6 +11,9 @@ import AudioToolbox
 
 class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIPopoverPresentationControllerDelegate {
 
+    //
+    //      Outlets
+    //
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var stopwatchLabel: UILabel!
     @IBOutlet weak var countsTabel: UITableView!
@@ -22,7 +25,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var repeatTittleOutlet: UILabel!
     @IBOutlet weak var colorizeButtonOutlet: UIButton!
     
-    // Variaables block
+    //
+    //      Variables block
+    //
     var timer = NSTimer()
     var storeTimersList: [TimerItem] = []
     var storeColorTimer: ColorItem!
@@ -37,7 +42,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var timerIdChangedFromList = 0
     
     //
-    //Page view controller
+    //      Strings
+    //
+    
+    
+    //
+    //      Page view controller
     //
     var pageIndex: Int!
     var titleText: String!
@@ -56,6 +66,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.countsTabel.reloadData()
         self.updateColors()
+        self.updateCellColors()
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     //
@@ -89,7 +100,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.storeTimersList[self.timerIdChangedFromList].switchState = true
         }
         self.countsTabel.reloadData()
-        self.updateColors()
+        self.updateCellColors()
         self.saveData()
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -114,14 +125,16 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func changeViewColors() {
         self.titleLabel.textColor = self.storeColorTimer.defaultDisplayColor
         self.stopwatchLabel.textColor = self.storeColorTimer.defaultDisplayColor
+        self.repeatTittleOutlet.textColor = self.storeColorTimer.defaultDisplayColor
+        
+        self.stepperOutlet.tintColor = self.storeColorTimer.defaultButtonColor
+        self.repeatSwitchOutlet.tintColor = self.storeColorTimer.defaultButtonColor
         self.startStopOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
         self.addToListOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
-        self.stepperOutlet.tintColor = self.storeColorTimer.defaultButtonColor
         self.clearButtonOutlet.titleLabel?.textColor =  self.storeColorTimer.defaultButtonColor
-        self.repeatSwitchOutlet.onTintColor = self.storeColorTimer.defaultSwitchOnColor
-        self.repeatSwitchOutlet.tintColor = self.storeColorTimer.defaultButtonColor
-        self.repeatTittleOutlet.textColor = self.storeColorTimer.defaultDisplayColor
         self.colorizeButtonOutlet.titleLabel?.textColor = self.storeColorTimer.defaultButtonColor
+        
+        self.repeatSwitchOutlet.onTintColor = self.storeColorTimer.defaultSwitchOnColor
     }
     func randomizeColor() -> UIColor {
         var r_color: UIColor!
@@ -137,10 +150,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.storeColorTimer == nil {
             self.storeColorTimer = ColorItem(button: UIColor.blackColor(), display: UIColor.blackColor(), switchon: UIColor.blackColor(), celllabel: UIColor.blackColor())
         }
+        self.changeViewColors()
+    }
+    func updateCellColors() {
         for i in self.storeTimersList {
             self.changeCellColor(i.my_index, color: i.switchState ?  self.storeColorTimer.defaultCellLableColor : UIColor.lightGrayColor())
         }
-        self.changeViewColors()
     }
     //
     //      Hardware methods
@@ -169,7 +184,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         if unarchivedColor != nil {
             self.storeColorTimer = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedColor!) as! ColorItem
-            self.updateColors()
         }
         
         defaults.synchronize()
@@ -225,11 +239,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.populateStopwatchLabel()
         currentWatchIndex = 0
         if self.isListEmpty {
-            self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
+            self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
         } else {
-            self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
+            self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
         }
-        self.updateColors()
     }
     func countdownStopwatch(){
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
@@ -264,7 +277,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.stepperOutlet.enabled = false
             self.clearButtonOutlet.enabled = false
             self.setBadgeNumber(true)
-            self.updateColors()
         }
 
         self.hours = self.storeTimersList[index].hours
@@ -295,7 +307,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.resetStopwatchLabel()
         self.setBadgeNumber(false)
         self.showNotification()
-        self.updateColors()
     }
     //
     //      Actions
@@ -309,6 +320,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.storeColorTimer.redefineColors(self.randomizeColor(), display: self.randomizeColor(), switchon: self.randomizeColor(), celllabel: self.randomizeColor())
         }
         self.updateColors()
+        self.updateCellColors()
         self.saveData()
     }
     @IBAction func clearListAction(sender: AnyObject) {
@@ -318,24 +330,22 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.resetStopwatchLabel()
             self.isListEmpty = true
             self.clearButtonOutlet.enabled = false
-            self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
-            self.updateColors()
+            self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
             self.saveData()
         } else {
             self.resetStopwatchLabel()
-            self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
-            self.updateColors()
+            self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
         }
+        self.updateCellColors()
     }
     @IBAction func addToListAction(sender: AnyObject) {
         if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
             //Null timer cannot be added
         } else {
             self.isListEmpty = false
-            self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
+            self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
             self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: self.storeTimersList.count))
             self.countsTabel.reloadData()
-            self.updateColors()
             self.resetStopwatchLabel()
             self.saveData()
         }
@@ -362,7 +372,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
         self.clearButtonOutlet.enabled = true
-        self.clearButtonOutlet.setTitle("Reset", forState: .Normal)
+        self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
         seconds = sender.value
         if seconds == 60.0{
             minutes += 1.0
@@ -374,7 +384,6 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             minutes = 0.0
         }
         populateStopwatchLabel()
-        self.updateColors()
     }
     
     // Dont really know what this is.

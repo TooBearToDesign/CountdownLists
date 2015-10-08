@@ -41,8 +41,6 @@
 		A6C86CD21BB59FE100F1F150 /* stopwatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stopwatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C86CD71BB59FE100F1F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C86CD81BB59FE100F1F150 /* stopwatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stopwatchTests.swift; sourceTree = "<group>"; };
-		A6EA5EFD1BC5305E00BE2EAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		A6EA5EFE1BC5305E00BE2EAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,7 +253,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				A6C86CC71BB59FE100F1F150 /* Base */,
-				A6EA5EFD1BC5305E00BE2EAF /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -264,7 +261,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				A6C86CCC1BB59FE100F1F150 /* Base */,
-				A6EA5EFE1BC5305E00BE2EAF /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
