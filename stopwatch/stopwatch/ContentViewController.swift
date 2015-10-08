@@ -35,7 +35,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var currentWatchIndex = 0
     var timerIdChangedFromList = 0
     
+    //
     //Page view controller
+    //
     var pageIndex: Int!
     var titleText: String!
     
@@ -52,9 +54,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
         }
         self.countsTabel.reloadData()
+        self.updateColors()
     }
-    
-    // TableView Methods
+    //
+    //      TableView Methods
+    //
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var skipString = "Skip"
         if !self.storeTimersList[indexPath.row].switchState {
@@ -79,17 +83,16 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         } else if buttonTitle == "Skip" {
             self.storeTimersList[self.timerIdChangedFromList].switchState = false
-            self.storeTimersList[self.timerIdChangedFromList].skipLabel = "(skipped)"
         } else if buttonTitle == "Back to list" {
             self.storeTimersList[self.timerIdChangedFromList].switchState = true
-            self.storeTimersList[self.timerIdChangedFromList].skipLabel = ""
         }
         self.countsTabel.reloadData()
+        self.updateColors()
         self.saveData()
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: PrototypeTableViewCell = self.countsTabel.dequeueReusableCellWithIdentifier("Cell") as! PrototypeTableViewCell
-        cell.populateCell(String(indexPath.row+1)+") "+self.storeTimersList[indexPath.row].cellLabel+" "+self.storeTimersList[indexPath.row].skipLabel)
+        let cell = self.countsTabel.dequeueReusableCellWithIdentifier("defaultCell", forIndexPath: indexPath) as UITableViewCell
+        cell.textLabel?.text = String(indexPath.row+1)+") "+self.storeTimersList[indexPath.row].cellLabel
         
         return cell
     }
@@ -97,7 +100,29 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.storeTimersList.count
     }
-    //Hardware methods
+    //
+    //      Colorized functions
+    //
+    func changeCellColor(index: Int, color: UIColor) {
+        //Change cell color
+        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        let cell = self.countsTabel.cellForRowAtIndexPath(indexPath)
+        cell?.textLabel?.textColor = color
+    }
+    func updateColors() {
+        //Color variables
+        var timersColor = UIColor.whiteColor()
+        for var i in self.storeTimersList {
+            timersColor = UIColor.blackColor()
+            if !i.switchState {
+                timersColor = UIColor.lightGrayColor()
+            }
+            self.changeCellColor(i.my_index, color: timersColor)
+        }
+    }
+    //
+    //      Hardware methods
+    //
     func saveData(){
         let defaults = NSUserDefaults.standardUserDefaults()
         let arrayOfListsKey = self.titleText
@@ -134,7 +159,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             UIApplication.sharedApplication().applicationIconBadgeNumber -= 1
         }
     }
-    //Functions to popover controller (colorized func)
+    //
+    //      Popover controller (colorized func)
+    //
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "colorizeView" {
             let vc = segue.destinationViewController 
@@ -148,7 +175,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
-    //Functions to work with stopwatch
+    //
+    //      Countdown functions
+    //
     func populateStopwatchLabel(){
         let secondsString = seconds > 9 ? "\(Int(seconds))" : "0\(Int(seconds))"
         let minutesString = minutes > 9 ? "\(Int(minutes))" :"0\(Int(minutes))"
@@ -212,6 +241,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.storeTimersList[index].switchState {
             self.populateStopwatchLabel()
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
+            self.watchisRunning = true
         } else {
             index += 1
             self.currentWatchIndex = index
@@ -233,7 +263,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.setBadgeNumber(false)
         self.showNotification()
     }
-    // Actions
+    //
+    //      Actions
+    //
     @IBAction func colorizeButtonAction(sender: AnyObject) {
         self.performSegueWithIdentifier("colorizeView", sender: self)
     }
@@ -250,6 +282,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.resetStopwatchLabel()
             self.clearButtonOutlet.setTitle("Clear", forState: .Normal)
         }
+        self.updateColors()
     }
     @IBAction func addToListAction(sender: AnyObject) {
         if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
@@ -277,10 +310,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             if !watchisRunning{
                 self.currentWatchIndex = 0
                 self.startCountdownTimer(currentWatchIndex)
-                self.watchisRunning = true
             }else{
                 self.stopCountdownTimer()
-                self.watchisRunning = false
             }
         }
     }

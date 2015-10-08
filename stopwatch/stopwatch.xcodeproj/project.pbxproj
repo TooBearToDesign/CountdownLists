@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7601BB986BB005077F5 /* ContentViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		A674D7631BBC0F16005077F5 /* PrototypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7621BBC0F16005077F5 /* PrototypeTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		A674D7651BBC2DA7005077F5 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7641BBC2DA7005077F5 /* TimerItem.swift */; settings = {ASSET_TAGS = (); }; };
 		A6C86CC31BB59FE100F1F150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */; };
 		A6C86CC51BB59FE100F1F150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CC41BB59FE100F1F150 /* ViewController.swift */; };
@@ -30,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		A674D7601BB986BB005077F5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		A674D7621BBC0F16005077F5 /* PrototypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrototypeTableViewCell.swift; sourceTree = "<group>"; };
 		A674D7641BBC2DA7005077F5 /* TimerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
 		A6C86CBD1BB59FE100F1F150 /* Countdown Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C86CC11BB59FE100F1F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */,
 				A6C86CC41BB59FE100F1F150 /* ViewController.swift */,
 				A674D7601BB986BB005077F5 /* ContentViewController.swift */,
-				A674D7621BBC0F16005077F5 /* PrototypeTableViewCell.swift */,
 				A674D7641BBC2DA7005077F5 /* TimerItem.swift */,
 				A6C86CC61BB59FE100F1F150 /* Main.storyboard */,
 				A6C86CC91BB59FE100F1F150 /* Images.xcassets */,
@@ -224,7 +221,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A674D7631BBC0F16005077F5 /* PrototypeTableViewCell.swift in Sources */,
 				A6C86CC51BB59FE100F1F150 /* ViewController.swift in Sources */,
 				A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */,
 				A6C86CC31BB59FE100F1F150 /* AppDelegate.swift in Sources */,

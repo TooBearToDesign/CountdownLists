@@ -87,29 +87,13 @@
                                 <rect key="frame" x="20" y="225" width="560" height="355"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="MKP-nw-qHi" customClass="PrototypeTableViewCell" customModule="Countdown" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="defaultCell" id="LsC-Xe-XWk">
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MKP-nw-qHi" id="5Jy-mq-3ts">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LsC-Xe-XWk" id="fhK-J8-pyg">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1) 00:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAQ-Ul-MSq">
-                                                    <rect key="frame" x="8" y="11" width="64" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="eAQ-Ul-MSq" firstAttribute="centerY" secondItem="5Jy-mq-3ts" secondAttribute="centerY" id="GcU-ji-uef"/>
-                                                <constraint firstItem="eAQ-Ul-MSq" firstAttribute="leading" secondItem="5Jy-mq-3ts" secondAttribute="leadingMargin" id="TNd-fR-zpd"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <color key="tintColor" red="0.80000001192092896" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outlet property="prototypeLabelCell" destination="eAQ-Ul-MSq" id="bx1-3U-zFp"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

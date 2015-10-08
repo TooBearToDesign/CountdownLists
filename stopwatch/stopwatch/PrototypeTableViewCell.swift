@@ -10,7 +10,7 @@ import UIKit
 
 class PrototypeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var prototypeLabelCell: UILabel!
+    //@IBOutlet weak var prototypeLabelCell: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
