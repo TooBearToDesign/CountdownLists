@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7601BB986BB005077F5 /* ContentViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		A674D7651BBC2DA7005077F5 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7641BBC2DA7005077F5 /* TimerItem.swift */; settings = {ASSET_TAGS = (); }; };
+		A63E2DB81BFCBB960075A962 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63E2DB71BFCBB960075A962 /* AVFoundation.framework */; };
+		A63E2DBC1BFCC0330075A962 /* Stop.wav in Resources */ = {isa = PBXBuildFile; fileRef = A63E2DB91BFCC0330075A962 /* Stop.wav */; };
+		A63E2DBD1BFCC0330075A962 /* Start.wav in Resources */ = {isa = PBXBuildFile; fileRef = A63E2DBA1BFCC0330075A962 /* Start.wav */; };
+		A63E2DBE1BFCC0330075A962 /* Continuous.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */; };
+		A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7601BB986BB005077F5 /* ContentViewController.swift */; };
+		A674D7651BBC2DA7005077F5 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7641BBC2DA7005077F5 /* TimerItem.swift */; };
 		A6C86CC31BB59FE100F1F150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */; };
 		A6C86CC51BB59FE100F1F150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CC41BB59FE100F1F150 /* ViewController.swift */; };
 		A6C86CC81BB59FE100F1F150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C86CC61BB59FE100F1F150 /* Main.storyboard */; };
 		A6C86CCA1BB59FE100F1F150 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C86CC91BB59FE100F1F150 /* Images.xcassets */; };
 		A6C86CCD1BB59FE100F1F150 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6C86CCB1BB59FE100F1F150 /* LaunchScreen.xib */; };
 		A6C86CD91BB59FE100F1F150 /* stopwatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C86CD81BB59FE100F1F150 /* stopwatchTests.swift */; };
-		A6EA5F001BC681D200BE2EAF /* ColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */; settings = {ASSET_TAGS = (); }; };
+		A6EA5F001BC681D200BE2EAF /* ColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A63E2DB71BFCBB960075A962 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A63E2DB91BFCC0330075A962 /* Stop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Stop.wav; sourceTree = "<group>"; };
+		A63E2DBA1BFCC0330075A962 /* Start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Start.wav; sourceTree = "<group>"; };
+		A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Continuous.mp3; sourceTree = "<group>"; };
 		A674D7601BB986BB005077F5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		A674D7641BBC2DA7005077F5 /* TimerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
 		A6C86CBD1BB59FE100F1F150 /* Countdown Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63E2DB81BFCBB960075A962 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,9 +71,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A63E2DB41BFCB7C90075A962 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A63E2DB91BFCC0330075A962 /* Stop.wav */,
+				A63E2DBA1BFCC0330075A962 /* Start.wav */,
+				A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		A6C86CB41BB59FE100F1F150 = {
 			isa = PBXGroup;
 			children = (
+				A63E2DB71BFCBB960075A962 /* AVFoundation.framework */,
 				A6C86CBF1BB59FE100F1F150 /* stopwatch */,
 				A6C86CD51BB59FE100F1F150 /* stopwatchTests */,
 				A6C86CBE1BB59FE100F1F150 /* Products */,
@@ -83,6 +103,7 @@
 		A6C86CBF1BB59FE100F1F150 /* stopwatch */ = {
 			isa = PBXGroup;
 			children = (
+				A63E2DB41BFCB7C90075A962 /* Resources */,
 				A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */,
 				A6C86CC41BB59FE100F1F150 /* ViewController.swift */,
 				A674D7601BB986BB005077F5 /* ContentViewController.swift */,
@@ -202,8 +223,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63E2DBE1BFCC0330075A962 /* Continuous.mp3 in Resources */,
 				A6C86CC81BB59FE100F1F150 /* Main.storyboard in Resources */,
 				A6C86CCD1BB59FE100F1F150 /* LaunchScreen.xib in Resources */,
+				A63E2DBC1BFCC0330075A962 /* Stop.wav in Resources */,
+				A63E2DBD1BFCC0330075A962 /* Start.wav in Resources */,
 				A6C86CCA1BB59FE100F1F150 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

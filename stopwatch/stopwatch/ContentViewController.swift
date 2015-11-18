@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AudioToolbox
+import AVFoundation
 
 class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIPopoverPresentationControllerDelegate {
 
@@ -34,13 +34,18 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var hours = 0.0 as Double
     var minutes = 0.0 as Double
     var seconds = 0.0 as Double
-    var stopwatchDisplay = ""
+    var countdownDisplay = ""
     var watchisRunning = false
     var addTimeToList = false
     var isListEmpty = true
     var currentWatchIndex = 0
     var timerIdChangedFromList = 0
-    
+    var audioContinuousURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Continuous", ofType: "mp3")!)
+    var audioStartURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Start", ofType: "wav")!)
+    var audioStopURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Stop", ofType: "wav")!)
+    var audioContinuousPlayer = AVAudioPlayer()
+    var audioStartPlayer = AVAudioPlayer()
+    var audioStopPlayer = AVAudioPlayer()
     //
     //      Strings
     //
@@ -67,6 +72,14 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.countsTabel.reloadData()
         self.updateColors()
         self.updateCellColors()
+        do {
+            try self.audioContinuousPlayer = AVAudioPlayer(contentsOfURL: self.audioContinuousURL)
+            self.audioContinuousPlayer.numberOfLoops = -1
+            try self.audioStartPlayer = AVAudioPlayer(contentsOfURL: self.audioStartURL)
+            try self.audioStopPlayer = AVAudioPlayer(contentsOfURL: self.audioStopURL)
+        } catch {
+            // I dont really know what todo here
+        }
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     //
@@ -90,7 +103,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             if self.storeTimersList.count == 0 {
                 self.isListEmpty = true
                 self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
-                if self.stopwatchDisplay == "00:00:00" {
+                if self.countdownDisplay == "00:00:00" {
                     self.clearButtonOutlet.enabled = false
                 }
             }
@@ -228,8 +241,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         let minutesString = minutes > 9 ? "\(Int(minutes))" :"0\(Int(minutes))"
         let hoursString = hours > 9 ? "\(Int(hours))" :"0\(Int(hours))"
         
-        stopwatchDisplay = "\(hoursString):\(minutesString):\(secondsString)"
-        stopwatchLabel.text = stopwatchDisplay
+        countdownDisplay = "\(hoursString):\(minutesString):\(secondsString)"
+        stopwatchLabel.text = countdownDisplay
     }
     func resetStopwatchLabel(){
         self.seconds = 0.0
@@ -277,6 +290,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.stepperOutlet.enabled = false
             self.clearButtonOutlet.enabled = false
             self.setBadgeNumber(true)
+            self.audioStartPlayer.play()
         }
 
         self.hours = self.storeTimersList[index].hours
@@ -299,6 +313,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func stopCountdownTimer(){
         timer.invalidate()
+        self.audioContinuousPlayer.stop()
+        self.audioStopPlayer.play()
         self.startStopOutlet.setTitle("START", forState: UIControlState.Normal)
         self.addToListOutlet.enabled = true
         self.stepperOutlet.enabled = true
@@ -344,7 +360,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             self.isListEmpty = false
             self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
-            self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: stopwatchDisplay, index: self.storeTimersList.count))
+            self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay, index: self.storeTimersList.count))
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
             self.saveData()
