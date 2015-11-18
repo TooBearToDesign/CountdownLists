@@ -291,6 +291,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.clearButtonOutlet.enabled = false
             self.setBadgeNumber(true)
             self.audioStartPlayer.play()
+            self.audioContinuousPlayer.play()
         }
 
         self.hours = self.storeTimersList[index].hours
