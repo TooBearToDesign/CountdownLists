@@ -22,7 +22,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var stepperOutlet: UIStepper!
     @IBOutlet weak var clearButtonOutlet: UIButton!
     @IBOutlet weak var repeatSwitchOutlet: UISwitch!
+    @IBOutlet weak var muteSwitchOutlet: UISwitch!
     @IBOutlet weak var repeatTittleOutlet: UILabel!
+    @IBOutlet weak var muteTittleOutlet: UILabel!
     @IBOutlet weak var colorizeButtonOutlet: UIButton!
     
     //
@@ -38,6 +40,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var watchisRunning = false
     var addTimeToList = false
     var isListEmpty = true
+    var isMuted = false
     var currentWatchIndex = 0
     var timerIdChangedFromList = 0
     var audioContinuousURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Continuous", ofType: "mp3")!)
@@ -139,15 +142,18 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.titleLabel.textColor = self.storeColorTimer.defaultDisplayColor
         self.stopwatchLabel.textColor = self.storeColorTimer.defaultDisplayColor
         self.repeatTittleOutlet.textColor = self.storeColorTimer.defaultDisplayColor
+        self.muteTittleOutlet.textColor = self.storeColorTimer.defaultDisplayColor
         
         self.stepperOutlet.tintColor = self.storeColorTimer.defaultButtonColor
         self.repeatSwitchOutlet.tintColor = self.storeColorTimer.defaultButtonColor
+        self.muteSwitchOutlet.tintColor = self.storeColorTimer.defaultButtonColor
         self.startStopOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
         self.addToListOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
         self.clearButtonOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
         self.colorizeButtonOutlet.setTitleColor(self.storeColorTimer.defaultButtonColor, forState: UIControlState.Normal)
         
         self.repeatSwitchOutlet.onTintColor = self.storeColorTimer.defaultSwitchOnColor
+        self.muteSwitchOutlet.onTintColor = self.storeColorTimer.defaultSwitchOnColor
     }
     func randomizeColor() -> UIColor {
         var r_color: UIColor!
@@ -404,6 +410,17 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         populateStopwatchLabel()
     }
     
+    @IBAction func muteSwitchChanged(sender: AnyObject) {
+        if self.muteSwitchOutlet.on {
+            self.audioContinuousPlayer.volume = 1.0
+            self.audioStartPlayer.volume = 1.0
+            self.audioStopPlayer.volume = 1.0
+        } else {
+            self.audioContinuousPlayer.volume = 0.0
+            self.audioStartPlayer.volume = 0.0
+            self.audioStopPlayer.volume = 0.0
+        }
+    }
     // Dont really know what this is.
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

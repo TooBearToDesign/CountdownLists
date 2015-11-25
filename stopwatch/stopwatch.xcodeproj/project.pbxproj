@@ -39,7 +39,7 @@
 		A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Continuous.mp3; sourceTree = "<group>"; };
 		A674D7601BB986BB005077F5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		A674D7641BBC2DA7005077F5 /* TimerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
-		A6C86CBD1BB59FE100F1F150 /* Countdown Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C86CBD1BB59FE100F1F150 /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C86CC11BB59FE100F1F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6C86CC41BB59FE100F1F150 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		A6C86CBE1BB59FE100F1F150 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6C86CBD1BB59FE100F1F150 /* Countdown Debug.app */,
+				A6C86CBD1BB59FE100F1F150 /* Countdown.app */,
 				A6C86CD21BB59FE100F1F150 /* stopwatchTests.xctest */,
 			);
 			name = Products;
@@ -159,7 +159,7 @@
 			);
 			name = stopwatch;
 			productName = stopwatch;
-			productReference = A6C86CBD1BB59FE100F1F150 /* Countdown Debug.app */;
+			productReference = A6C86CBD1BB59FE100F1F150 /* Countdown.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A6C86CD11BB59FE100F1F150 /* stopwatchTests */ = {
@@ -309,7 +309,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -356,7 +355,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -384,7 +382,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = stopwatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdown;
+				PRODUCT_NAME = Countdown;
 			};
 			name = Debug;
 		};
@@ -394,7 +393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = stopwatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdown;
 			};
 			name = Release;
 		};
