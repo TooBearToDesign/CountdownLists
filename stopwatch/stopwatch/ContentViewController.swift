@@ -173,7 +173,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func updateCellColors() {
         for i in self.storeTimersList {
-            self.changeCellColor(i.my_index, color: i.switchState ?  self.storeColorTimer.defaultCellLableColor : UIColor.lightGrayColor())
+            self.changeCellColor((self.storeTimersList.indexOf(i))!, color: i.switchState ?  self.storeColorTimer.defaultCellLableColor : UIColor.lightGrayColor())
         }
     }
     //
@@ -367,7 +367,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             self.isListEmpty = false
             self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
-            self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay, index: self.storeTimersList.count))
+            self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay))
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
             self.saveData()

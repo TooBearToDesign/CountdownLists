@@ -27,7 +27,7 @@ class ColorItem: NSObject, NSCoding {
         self.defaultButtonColor = button
         self.defaultDisplayColor = display
         self.defaultSwitchOnColor = switchon
-        self.defaultCellLableColor = switchon
+        self.defaultCellLableColor = celllabel
     }
 
     // MARK: NSCoding
