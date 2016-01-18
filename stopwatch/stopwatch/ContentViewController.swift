@@ -117,6 +117,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.countsTabel.reloadData()
         self.updateCellColors()
+        self.checkAllSkipped()
         self.saveData()
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -242,6 +243,19 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     //
     //      Countdown functions
     //
+    func checkAllSkipped(){
+        var allSkipped=true as Bool!
+        if self.storeTimersList.count != 0{
+            for i in self.storeTimersList {
+                if i.switchState {
+                    allSkipped = false
+                }
+            }
+        } else {
+            allSkipped = false
+        }
+        self.startStopOutlet.enabled = !allSkipped
+    }
     func populateStopwatchLabel(){
         let secondsString = seconds > 9 ? "\(Int(seconds))" : "0\(Int(seconds))"
         let minutesString = minutes > 9 ? "\(Int(minutes))" :"0\(Int(minutes))"
@@ -290,21 +304,21 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         populateStopwatchLabel()
     }
     func startCountdownTimer(var index: Int){
-        if !watchisRunning {
-            self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
-            self.addToListOutlet.enabled = false
-            self.stepperOutlet.enabled = false
-            self.clearButtonOutlet.enabled = false
-            self.setBadgeNumber(true)
-            self.audioStartPlayer.play()
-            self.audioContinuousPlayer.play()
-        }
-
-        self.hours = self.storeTimersList[index].hours
-        self.seconds = self.storeTimersList[index].seconds
-        self.minutes = self.storeTimersList[index].minutes
-        
         if self.storeTimersList[index].switchState {
+            if !watchisRunning {
+                self.startStopOutlet.setTitle("STOP", forState: UIControlState.Normal)
+                self.addToListOutlet.enabled = false
+                self.stepperOutlet.enabled = false
+                self.clearButtonOutlet.enabled = false
+                self.setBadgeNumber(true)
+                self.audioStartPlayer.play()
+                self.audioContinuousPlayer.play()
+            }
+            
+            self.hours = self.storeTimersList[index].hours
+            self.seconds = self.storeTimersList[index].seconds
+            self.minutes = self.storeTimersList[index].minutes
+        
             self.populateStopwatchLabel()
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: ("countdownStopwatch"), userInfo: nil, repeats: true)
             self.watchisRunning = true
