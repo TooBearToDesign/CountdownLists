@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:stopwatch.xcodeproj">
+      location = "self:/Users/ivandeveloper/2B2D/Stopwatch/stopwatch/countdownlists.xcodeproj">
    </FileRef>
 </Workspace>

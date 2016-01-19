@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        pageControler.pageIndicatorTintColor = UIColor.blueColor()
 //        pageControler.currentPageIndicatorTintColor = UIColor.blackColor()
 //        pageControler.backgroundColor = UIColor.whiteColor()
-        
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         
         return true

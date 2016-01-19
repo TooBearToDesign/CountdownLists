@@ -17,9 +17,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A6C86CD11BB59FE100F1F150"
-               BuildableName = "stopwatchTests.xctest"
-               BlueprintName = "stopwatchTests"
-               ReferencedContainer = "container:stopwatch.xcodeproj">
+               BuildableName = "countdownlistsTests.xctest"
+               BlueprintName = "countdownlistsTests"
+               ReferencedContainer = "container:countdownlists.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

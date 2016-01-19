@@ -39,14 +39,14 @@
 		A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Continuous.mp3; sourceTree = "<group>"; };
 		A674D7601BB986BB005077F5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		A674D7641BBC2DA7005077F5 /* TimerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
-		A6C86CBD1BB59FE100F1F150 /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C86CBD1BB59FE100F1F150 /* Countdown Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countdown Lists.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C86CC11BB59FE100F1F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C86CC21BB59FE100F1F150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6C86CC41BB59FE100F1F150 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6C86CC71BB59FE100F1F150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6C86CC91BB59FE100F1F150 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A6C86CCC1BB59FE100F1F150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A6C86CD21BB59FE100F1F150 /* stopwatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stopwatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C86CD21BB59FE100F1F150 /* countdownlistsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = countdownlistsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C86CD71BB59FE100F1F150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C86CD81BB59FE100F1F150 /* stopwatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stopwatchTests.swift; sourceTree = "<group>"; };
 		A6EA5EFF1BC681D200BE2EAF /* ColorItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorItem.swift; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 		A6C86CBE1BB59FE100F1F150 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6C86CBD1BB59FE100F1F150 /* Countdown.app */,
-				A6C86CD21BB59FE100F1F150 /* stopwatchTests.xctest */,
+				A6C86CBD1BB59FE100F1F150 /* Countdown Lists.app */,
+				A6C86CD21BB59FE100F1F150 /* countdownlistsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A6C86CBC1BB59FE100F1F150 /* stopwatch */ = {
+		A6C86CBC1BB59FE100F1F150 /* countdownlists */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6C86CDC1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "stopwatch" */;
+			buildConfigurationList = A6C86CDC1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "countdownlists" */;
 			buildPhases = (
 				A6C86CB91BB59FE100F1F150 /* Sources */,
 				A6C86CBA1BB59FE100F1F150 /* Frameworks */,
@@ -157,14 +157,14 @@
 			);
 			dependencies = (
 			);
-			name = stopwatch;
+			name = countdownlists;
 			productName = stopwatch;
-			productReference = A6C86CBD1BB59FE100F1F150 /* Countdown.app */;
+			productReference = A6C86CBD1BB59FE100F1F150 /* Countdown Lists.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A6C86CD11BB59FE100F1F150 /* stopwatchTests */ = {
+		A6C86CD11BB59FE100F1F150 /* countdownlistsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6C86CDF1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "stopwatchTests" */;
+			buildConfigurationList = A6C86CDF1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "countdownlistsTests" */;
 			buildPhases = (
 				A6C86CCE1BB59FE100F1F150 /* Sources */,
 				A6C86CCF1BB59FE100F1F150 /* Frameworks */,
@@ -175,9 +175,9 @@
 			dependencies = (
 				A6C86CD41BB59FE100F1F150 /* PBXTargetDependency */,
 			);
-			name = stopwatchTests;
+			name = countdownlistsTests;
 			productName = stopwatchTests;
-			productReference = A6C86CD21BB59FE100F1F150 /* stopwatchTests.xctest */;
+			productReference = A6C86CD21BB59FE100F1F150 /* countdownlistsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -200,7 +200,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A6C86CB81BB59FE100F1F150 /* Build configuration list for PBXProject "stopwatch" */;
+			buildConfigurationList = A6C86CB81BB59FE100F1F150 /* Build configuration list for PBXProject "countdownlists" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -213,8 +213,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A6C86CBC1BB59FE100F1F150 /* stopwatch */,
-				A6C86CD11BB59FE100F1F150 /* stopwatchTests */,
+				A6C86CBC1BB59FE100F1F150 /* countdownlists */,
+				A6C86CD11BB59FE100F1F150 /* countdownlistsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -268,7 +268,7 @@
 /* Begin PBXTargetDependency section */
 		A6C86CD41BB59FE100F1F150 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A6C86CBC1BB59FE100F1F150 /* stopwatch */;
+			target = A6C86CBC1BB59FE100F1F150 /* countdownlists */;
 			targetProxy = A6C86CD31BB59FE100F1F150 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -383,9 +383,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: smokiebear90@gmail.com (LWL5EB2Q6G)";
 				INFOPLIST_FILE = stopwatch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdown;
-				PRODUCT_NAME = Countdown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
+				PRODUCT_NAME = "Countdown Lists";
+				PROVISIONING_PROFILE = "c7b0fe19-8105-4c5c-b2b3-baa49adbf4ef";
 			};
 			name = Debug;
 		};
@@ -393,10 +395,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: smokiebear90@gmail.com (LWL5EB2Q6G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ivan Boychuk (88UJWXG665)";
 				INFOPLIST_FILE = stopwatch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
+				PRODUCT_NAME = "Countdown Lists";
+				PROVISIONING_PROFILE = "c7b0fe19-8105-4c5c-b2b3-baa49adbf4ef";
 			};
 			name = Release;
 		};
@@ -415,8 +420,8 @@
 				INFOPLIST_FILE = stopwatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/stopwatch.app/stopwatch";
+				PRODUCT_NAME = countdownlistsTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/countdownlists.app/countdownlists";
 			};
 			name = Debug;
 		};
@@ -431,15 +436,15 @@
 				INFOPLIST_FILE = stopwatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.growassociation.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/stopwatch.app/stopwatch";
+				PRODUCT_NAME = countdownlistsTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/countdownlists.app/countdownlists";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A6C86CB81BB59FE100F1F150 /* Build configuration list for PBXProject "stopwatch" */ = {
+		A6C86CB81BB59FE100F1F150 /* Build configuration list for PBXProject "countdownlists" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A6C86CDA1BB59FE100F1F150 /* Debug */,
@@ -448,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A6C86CDC1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "stopwatch" */ = {
+		A6C86CDC1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "countdownlists" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A6C86CDD1BB59FE100F1F150 /* Debug */,
@@ -457,7 +462,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A6C86CDF1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "stopwatchTests" */ = {
+		A6C86CDF1BB59FE100F1F150 /* Build configuration list for PBXNativeTarget "countdownlistsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A6C86CE01BB59FE100F1F150 /* Debug */,
