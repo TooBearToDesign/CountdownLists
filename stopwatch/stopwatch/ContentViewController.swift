@@ -287,10 +287,12 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if hours == 0.0 && minutes == 0.0 && seconds == 0.0{
             self.currentWatchIndex += 1
             if (self.storeTimersList.count > currentWatchIndex) {
+                self.audioStopPlayer.play()
                 self.timer.invalidate()
                 self.startCountdownTimer(currentWatchIndex)
             }else{
                 if self.repeatSwitchOutlet.on{
+                    self.audioStopPlayer.play()
                     self.timer.invalidate()
                     self.startCountdownTimer(0)
                 } else {

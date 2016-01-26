@@ -387,7 +387,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
 				PRODUCT_NAME = "Countdown Lists";
-				PROVISIONING_PROFILE = "27ab7160-3c34-4743-afec-94d947d8cf90";
+				PROVISIONING_PROFILE = "e521fa17-a8b1-4c10-9e15-10ec10aca0c9";
 			};
 			name = Debug;
 		};
@@ -401,7 +401,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
 				PRODUCT_NAME = "Countdown Lists";
-				PROVISIONING_PROFILE = "27ab7160-3c34-4743-afec-94d947d8cf90";
+				PROVISIONING_PROFILE = "e521fa17-a8b1-4c10-9e15-10ec10aca0c9";
 			};
 			name = Release;
 		};
