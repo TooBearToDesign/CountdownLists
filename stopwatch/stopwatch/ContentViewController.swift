@@ -46,7 +46,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var timerIdChangedFromList = 0
     var audioContinuousURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Continuous", ofType: "mp3")!)
     var audioStartURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Start", ofType: "wav")!)
-    var audioStopURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Stop", ofType: "wav")!)
+    var audioStopURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Stop-short", ofType: "wav")!)
     var audioContinuousPlayer = AVAudioPlayer()
     var audioStartPlayer = AVAudioPlayer()
     var audioStopPlayer = AVAudioPlayer()

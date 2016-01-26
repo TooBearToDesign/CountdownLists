@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9411F20E1C579C460090967C /* Stop-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9411F20D1C579C460090967C /* Stop-short.wav */; };
 		A63E2DB81BFCBB960075A962 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63E2DB71BFCBB960075A962 /* AVFoundation.framework */; };
-		A63E2DBC1BFCC0330075A962 /* Stop.wav in Resources */ = {isa = PBXBuildFile; fileRef = A63E2DB91BFCC0330075A962 /* Stop.wav */; };
 		A63E2DBD1BFCC0330075A962 /* Start.wav in Resources */ = {isa = PBXBuildFile; fileRef = A63E2DBA1BFCC0330075A962 /* Start.wav */; };
 		A63E2DBE1BFCC0330075A962 /* Continuous.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */; };
 		A674D7611BB986BB005077F5 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A674D7601BB986BB005077F5 /* ContentViewController.swift */; };
@@ -33,8 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9411F20D1C579C460090967C /* Stop-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Stop-short.wav"; sourceTree = "<group>"; };
 		A63E2DB71BFCBB960075A962 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		A63E2DB91BFCC0330075A962 /* Stop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Stop.wav; sourceTree = "<group>"; };
 		A63E2DBA1BFCC0330075A962 /* Start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Start.wav; sourceTree = "<group>"; };
 		A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Continuous.mp3; sourceTree = "<group>"; };
 		A674D7601BB986BB005077F5 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		A63E2DB41BFCB7C90075A962 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A63E2DB91BFCC0330075A962 /* Stop.wav */,
+				9411F20D1C579C460090967C /* Stop-short.wav */,
 				A63E2DBA1BFCC0330075A962 /* Start.wav */,
 				A63E2DBB1BFCC0330075A962 /* Continuous.mp3 */,
 			);
@@ -226,8 +226,8 @@
 			files = (
 				A63E2DBE1BFCC0330075A962 /* Continuous.mp3 in Resources */,
 				A6C86CC81BB59FE100F1F150 /* Main.storyboard in Resources */,
+				9411F20E1C579C460090967C /* Stop-short.wav in Resources */,
 				A6C86CCD1BB59FE100F1F150 /* LaunchScreen.xib in Resources */,
-				A63E2DBC1BFCC0330075A962 /* Stop.wav in Resources */,
 				A63E2DBD1BFCC0330075A962 /* Start.wav in Resources */,
 				A6C86CCA1BB59FE100F1F150 /* Images.xcassets in Resources */,
 			);
