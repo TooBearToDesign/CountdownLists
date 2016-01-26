@@ -41,6 +41,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     var addTimeToList = false
     var isListEmpty = true
     var isMuted = false
+    var isChanging = false
     var currentWatchIndex = 0
     var timerIdChangedFromList = 0
     var audioContinuousURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Continuous", ofType: "mp3")!)
@@ -93,9 +94,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if !self.storeTimersList[indexPath.row].switchState {
             skipString = "Back to list"
         }
-        let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", "Change", skipString)
+        let alert = UIAlertView(title: "Manage timer", message: "You can delete, change or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", "Change", skipString)
         self.timerIdChangedFromList = indexPath.row
-        if !watchisRunning{
+        if !watchisRunning && !isChanging{
             alert.show()
         }
     }
@@ -111,13 +112,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         } else if buttonTitle == "Change" {
-            // TODO
-            if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
-                // Null timer cannot be added
-            } else {
-                self.storeTimersList.removeAtIndex(self.timerIdChangedFromList)
-                self.storeTimersList.insert(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay), atIndex: self.timerIdChangedFromList)
-            }
+            self.storeTimersList[self.timerIdChangedFromList].cellLabel += " waiting..."
+            let alertChange = UIAlertView(title: "Change time", message: "Change time using stepper and press ADD to save", delegate: self, cancelButtonTitle: "OK")
+            self.isChanging = true
+            alertChange.show()
         } else if buttonTitle == "Skip" {
             self.storeTimersList[self.timerIdChangedFromList].switchState = false
         } else if buttonTitle == "Back to list" {
@@ -374,6 +372,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
             self.isListEmpty = true
+            self.isChanging = false
             self.clearButtonOutlet.enabled = false
             self.clearButtonOutlet.setTitle("Reset", forState: UIControlState.Normal)
             self.saveData()
@@ -389,7 +388,13 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             self.isListEmpty = false
             self.clearButtonOutlet.setTitle("Clear", forState: UIControlState.Normal)
-            self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay))
+            if self.isChanging {
+                self.storeTimersList.removeAtIndex(self.timerIdChangedFromList)
+                self.storeTimersList.insert(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay), atIndex: self.timerIdChangedFromList)
+                self.isChanging = false
+            } else {
+                self.storeTimersList.append(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay))
+            }
             self.countsTabel.reloadData()
             self.resetStopwatchLabel()
             self.saveData()

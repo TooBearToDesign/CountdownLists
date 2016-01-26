@@ -192,7 +192,7 @@
 				TargetAttributes = {
 					A6C86CBC1BB59FE100F1F150 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = Q6H2UUHWY7;
+						DevelopmentTeam = 88UJWXG665;
 					};
 					A6C86CD11BB59FE100F1F150 = {
 						CreatedOnToolsVersion = 6.4;
@@ -381,13 +381,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: smokiebear90@gmail.com (LWL5EB2Q6G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = stopwatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
 				PRODUCT_NAME = "Countdown Lists";
-				PROVISIONING_PROFILE = "c7b0fe19-8105-4c5c-b2b3-baa49adbf4ef";
+				PROVISIONING_PROFILE = "27ab7160-3c34-4743-afec-94d947d8cf90";
 			};
 			name = Debug;
 		};
@@ -395,13 +395,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ivan Boychuk (88UJWXG665)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = stopwatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
 				PRODUCT_NAME = "Countdown Lists";
-				PROVISIONING_PROFILE = "c7b0fe19-8105-4c5c-b2b3-baa49adbf4ef";
+				PROVISIONING_PROFILE = "27ab7160-3c34-4743-afec-94d947d8cf90";
 			};
 			name = Release;
 		};
