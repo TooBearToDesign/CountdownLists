@@ -93,7 +93,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         if !self.storeTimersList[indexPath.row].switchState {
             skipString = "Back to list"
         }
-        let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", skipString)
+        let alert = UIAlertView(title: "Manage timer", message: "You can delete or skip this timer", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete", "Change", skipString)
         self.timerIdChangedFromList = indexPath.row
         if !watchisRunning{
             alert.show()
@@ -109,6 +109,14 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 if self.countdownDisplay == "00:00:00" {
                     self.clearButtonOutlet.enabled = false
                 }
+            }
+        } else if buttonTitle == "Change" {
+            // TODO
+            if self.seconds == 0.0 && self.minutes == 0.0 && self.hours == 0.0 {
+                // Null timer cannot be added
+            } else {
+                self.storeTimersList.removeAtIndex(self.timerIdChangedFromList)
+                self.storeTimersList.insert(TimerItem(sec: self.seconds, min: self.minutes, hour: self.hours, swState: true, cLabel: countdownDisplay), atIndex: self.timerIdChangedFromList)
             }
         } else if buttonTitle == "Skip" {
             self.storeTimersList[self.timerIdChangedFromList].switchState = false
