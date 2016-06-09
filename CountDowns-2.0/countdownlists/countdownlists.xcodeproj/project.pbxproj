@@ -14,6 +14,8 @@
 		678FC5B41D0553690090D383 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678FC5B21D0553690090D383 /* LaunchScreen.storyboard */; };
 		678FC5BF1D0553690090D383 /* countdownlistsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FC5BE1D0553690090D383 /* countdownlistsTests.swift */; };
 		678FC5CA1D0553690090D383 /* countdownlistsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FC5C91D0553690090D383 /* countdownlistsUITests.swift */; };
+		678FC5DB1D0554030090D383 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678FC5DA1D0554030090D383 /* SWRevealViewController.m */; };
+		678FC5DD1D07DAE50090D383 /* CountDownsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FC5DC1D07DAE50090D383 /* CountDownsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 		678FC5C51D0553690090D383 /* countdownlistsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = countdownlistsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		678FC5C91D0553690090D383 /* countdownlistsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countdownlistsUITests.swift; sourceTree = "<group>"; };
 		678FC5CB1D0553690090D383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		678FC5D81D0554020090D383 /* countdownlists-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "countdownlists-Bridging-Header.h"; sourceTree = "<group>"; };
+		678FC5D91D0554030090D383 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		678FC5DA1D0554030090D383 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		678FC5DC1D07DAE50090D383 /* CountDownsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +103,14 @@
 		678FC5A81D0553690090D383 /* countdownlists */ = {
 			isa = PBXGroup;
 			children = (
+				678FC5D71D0553D10090D383 /* 3dParty */,
 				678FC5A91D0553690090D383 /* AppDelegate.swift */,
 				678FC5AB1D0553690090D383 /* ViewController.swift */,
 				678FC5AD1D0553690090D383 /* Main.storyboard */,
 				678FC5B01D0553690090D383 /* Assets.xcassets */,
 				678FC5B21D0553690090D383 /* LaunchScreen.storyboard */,
 				678FC5B51D0553690090D383 /* Info.plist */,
+				678FC5DC1D07DAE50090D383 /* CountDownsViewController.swift */,
 			);
 			path = countdownlists;
 			sourceTree = "<group>";
@@ -123,6 +131,16 @@
 				678FC5CB1D0553690090D383 /* Info.plist */,
 			);
 			path = countdownlistsUITests;
+			sourceTree = "<group>";
+		};
+		678FC5D71D0553D10090D383 /* 3dParty */ = {
+			isa = PBXGroup;
+			children = (
+				678FC5D91D0554030090D383 /* SWRevealViewController.h */,
+				678FC5DA1D0554030090D383 /* SWRevealViewController.m */,
+				678FC5D81D0554020090D383 /* countdownlists-Bridging-Header.h */,
+			);
+			name = 3dParty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +275,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				678FC5DD1D07DAE50090D383 /* CountDownsViewController.swift in Sources */,
 				678FC5AC1D0553690090D383 /* ViewController.swift in Sources */,
 				678FC5AA1D0553690090D383 /* AppDelegate.swift in Sources */,
+				678FC5DB1D0554030090D383 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,12 +422,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = countdownlists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3108756-9b1e-4133-8ef4-e0944b512a6c";
+				SWIFT_OBJC_BRIDGING_HEADER = "countdownlists/countdownlists-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -415,12 +438,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ivan Boychuk (88UJWXG665)";
 				INFOPLIST_FILE = countdownlists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growassociation.countdownlists;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3108756-9b1e-4133-8ef4-e0944b512a6c";
+				SWIFT_OBJC_BRIDGING_HEADER = "countdownlists/countdownlists-Bridging-Header.h";
 			};
 			name = Release;
 		};
